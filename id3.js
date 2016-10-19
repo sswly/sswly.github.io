@@ -16,7 +16,7 @@ var testSample = [
 ];
 
 function isValidData(data, attrs) {
-  if (attrs == undefined) {
+  if (attrs == undefined || attrs == null) {
     return true;
   }
   
@@ -46,8 +46,7 @@ function getAttrData(sample, attr, attrStack) {
   return attrData;
 }
 
-function getEntropy(sample, attr) {
-  var attrStack;
+function getEntropy(sample, attr, attrStack) {
   var attrData = getAttrData(sample, attr, attrStack);
   
   var entropy = 0.0;
@@ -57,5 +56,18 @@ function getEntropy(sample, attr) {
   return entropy;
 }
 
-function getGain(sample, attrMain, attrGain) {
+function getGain(sample, attr, attrGain) {
+  var attrData = getAttrData(sample, attrGain, attrStack, null);
+  
+  var gain = getEntropy(sample, attr);
+  Object.keys(attrData["data"]).forEach(function(item, index){
+    var attrStack = [{"key":item, "value":attrData["data"][item]}];
+    gain -= (attrData["data"][item] / attrData["total"]) * getEntropy(sample, attr, attrStack);
+  });
+  return gain;
+}
+
+function test() {
+  getEntropy(testSample, "Play ball", null);
+  getGain(testSample, "Play ball", "Wind");
 }
