@@ -21,6 +21,7 @@ function isValidData(data, attrs) {
   }
   
   attrs.forEach(function(item, index){
+    console.log(data[item["attr"]] + "<>" + item["value"]);
     if (data[item["attr"]] != item["value"]) {
       return false;
     }
