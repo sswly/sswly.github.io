@@ -21,14 +21,16 @@ function isValidData(data, attrs) {
     return true;
   }
   
+  var result = true;
   attrs.forEach(function(item, index){
     console.log(data[item["attr"]] + "<>" + item["value"]);
     if (data[item["attr"]] != item["value"]) {
-      return false;
+      result = false;
+      return;
     }
   });
-  console.log("ok data");
-  return true;
+  console.log("result = " + result);
+  return result;
 }
 
 function getAttrData(sample, attr, attrStack) {
