@@ -76,7 +76,7 @@ function getDecisionAttr(sample, attr) {
       return;
     }
     
-    var gain = getGain(sample, attr, item));
+    var gain = getGain(sample, attr, item);
     if (gain > decision["gain"]) {
       decision["gain"] = gain;
       decision["attr"] = item;
@@ -90,5 +90,5 @@ function test() {
   Object.keys(testSample[0]).forEach(function(item, index){
     console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item));
   });
-  console.log("entropy=" + getDecisionAttr(testSample, "Play ball"));
+  console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball"));
 }
