@@ -15,22 +15,25 @@ var testSample = [
   {"Outlook":"Rain","Temperature":"Mild","Humidity":"High","Wind":"Strong","Play ball":"No"},
 ];
 
-function getEntropy(sample, attr) {
-  var total = 0;
-  var attrClassNum = {};
+function getAttrData(sample, attr) {
+  var attrData = {"total":0, "data":{}};
   sample.forEach(function(item, index){
-    if (attrClassNum[item[attr]] != undefined) {
-      attrClassNum[item[attr]]++;
+    if (attrData["data"][item[attr]] != undefined) {
+      attrData["data"][item[attr]]++;
     } else {
-      attrClassNum[item[attr]] = 1;
+      attrData["data"][item[attr]] = 1;
     }
-    total++;
+    attrData["total"]++;
   });
-  //console.log("attr num=" + JSON.stringify(attrClassNum));
+  console.log("attr data: " + JSON.stringify(attrData));
+}
+
+function getEntropy(sample, attr) {
+  var attrData = getAttrData(sample, attr);
   
   var entropy = 0.0;
-  Object.keys(attrClassNum).forEach(function(item, index){
-    entropy += -(attrClassNum[item] / total) * (Math.log(attrClassNum[item] / total) / Math.log(2));
+  Object.keys(attrData["data"]).forEach(function(item, index){
+    entropy += -(attrData["data"][item] / attrData["total"]) * (Math.log(attrData["data"][item] / attrData["total"]) / Math.log(2));
   });
   return entropy;
 }
