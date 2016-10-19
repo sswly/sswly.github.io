@@ -29,6 +29,7 @@ function getEntropy(sample, attr) {
   
   var entropy = 0.0;
   Object.keys(attrClassNum).forEach(function(item, index){
+    alert(attrClassNum[item]);
     entropy += -(attrClassNum[item] / total) * (Math.log(attrClassNum[item] / total) / Math.log(2));
   });
   return entropy;
