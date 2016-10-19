@@ -27,7 +27,7 @@ function getEntropy(sample, attr) {
     total++;
   });
   console.log("total=" + total);
-  console.log("attr num=" + attrClassNum);
+  console.log("attr num=" + attrClassNum.toString());
   
   var entropy = 0.0;
   Object.keys(attrClassNum).forEach(function(item, index){
