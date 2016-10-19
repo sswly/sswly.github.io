@@ -23,13 +23,11 @@ function isValidData(data, attrs) {
   
   var result = true;
   attrs.forEach(function(item, index){
-    console.log(data[item["attr"]] + "<>" + item["value"]);
     if (data[item["attr"]] != item["value"]) {
       result = false;
       return;
     }
   });
-  console.log("result = " + result);
   return result;
 }
 
@@ -73,6 +71,6 @@ function getGain(sample, attr, attrGain) {
 }
 
 function test() {
-  getEntropy(testSample, "Play ball", null);
-  getGain(testSample, "Play ball", "Wind");
+  console.log("entropy=" + getEntropy(testSample, "Play ball", null));
+  console.log("entropy=" + getGain(testSample, "Play ball", "Wind"));
 }
