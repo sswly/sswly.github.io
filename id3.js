@@ -17,7 +17,7 @@ var testSample = [
 
 function getEntropy(sample, attr) {
   var total = 0;
-  var attrClassNum = [];
+  var attrClassNum = {};
   sample.forEach(function(item, index){
     if (attrClassNum.indexOf(item[attr]) > 0) {
       attrClassNum[item[attr]]++;
