@@ -69,10 +69,26 @@ function getGain(sample, attr, attrGain) {
   return gain;
 }
 
+function getDecisionAttr(sample, attr) {
+  var decision = {"gain":0.0};
+  Object.keys(sample[0]).forEach(function(item, index){
+    if (attr == item) {
+      return;
+    }
+    
+    var gain = getGain(sample, attr, item));
+    if (gain > decision["gain"]) {
+      decision["gain"] = gain;
+      decision["attr"] = item;
+    }
+  });
+  return decision["attr"];
+}
+
 function test() {
   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
   Object.keys(testSample[0]).forEach(function(item, index){
     console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item));
   });
-  
+  console.log("entropy=" + getDecisionAttr(testSample, "Play ball"));
 }
