@@ -26,6 +26,7 @@ function getAttrData(sample, attr) {
     attrData["total"]++;
   });
   console.log("attr data: " + JSON.stringify(attrData));
+  return attrData;
 }
 
 function getEntropy(sample, attr) {
