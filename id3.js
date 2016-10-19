@@ -57,7 +57,7 @@ function getEntropy(sample, attr, attrStack) {
 }
 
 function getGain(sample, attr, attrGain) {
-  var attrData = getAttrData(sample, attrGain, attrStack, null);
+  var attrData = getAttrData(sample, attrGain, null);
   
   var gain = getEntropy(sample, attr);
   Object.keys(attrData["data"]).forEach(function(item, index){
