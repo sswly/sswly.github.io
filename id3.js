@@ -32,7 +32,7 @@ function getAttrData(sample, attr, attrStack) {
   var attrData = {"total":0, "data":{}};
   sample.forEach(function(item, index){
     if (!isValidData(item, attrStack)) {
-      //continue;
+      return;
     }
     
     if (attrData["data"][item[attr]] != undefined) {
