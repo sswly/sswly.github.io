@@ -22,7 +22,7 @@ function getEntropy(sample, attr) {
     if (attrClassNum[item[attr]] != undefined) {
       attrClassNum[item[attr]]++;
     } else {
-      attrClassNum[item[attr]] = 0;
+      attrClassNum[item[attr]] = 1;
     }
     total++;
   });
