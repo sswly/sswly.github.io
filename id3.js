@@ -71,5 +71,8 @@ function getGain(sample, attr, attrGain) {
 
 function test() {
   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
-  console.log("entropy=" + getGain(testSample, "Play ball", "Wind"));
+  Object.keys(testSample[0]).forEach(function(item, index){
+    console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item));
+  });
+  
 }
