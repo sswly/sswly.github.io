@@ -58,13 +58,13 @@ function getEntropy(sample, attr, attrStack) {
   return entropy;
 }
 
-function getGain(sample, attr, attrGain) {
+function getGain(sample, attr, attrGain, attrStack) {
   var attrData = getAttrData(sample, attrGain, null);
   
   var gain = getEntropy(sample, attr);
   Object.keys(attrData["data"]).forEach(function(item, index){
-    var attrStack = [{"attr":attrGain, "value":item}];
-    gain -= (attrData["data"][item] / attrData["total"]) * getEntropy(sample, attr, attrStack);
+    var newAttrStack = attrStack.concat({"attr":attrGain, "value":item});
+    gain -= (attrData["data"][item] / attrData["total"]) * getEntropy(sample, attr, newAttrStack);
   });
   return gain;
 }
@@ -76,7 +76,7 @@ function getDecisionAttr(sample, attr) {
       return;
     }
     
-    var gain = getGain(sample, attr, item);
+    var gain = getGain(sample, attr, item, null);
     if (gain > decision["gain"]) {
       decision["gain"] = gain;
       decision["attr"] = item;
@@ -88,7 +88,7 @@ function getDecisionAttr(sample, attr) {
 function test() {
   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
   Object.keys(testSample[0]).forEach(function(item, index){
-    console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item));
+    console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item, null));
   });
   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball"));
 }
