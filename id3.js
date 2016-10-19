@@ -15,9 +15,26 @@ var testSample = [
   {"Outlook":"Rain","Temperature":"Mild","Humidity":"High","Wind":"Strong","Play ball":"No"},
 ];
 
-function getAttrData(sample, attr) {
+function isValidData(data, attrs) {
+  if (attrs == undefined) {
+    return true;
+  }
+  
+  attrs.forEach(function(item, index){
+    if (data[item["attr"]] != item["value"]) {
+      return false;
+    }
+  });
+  return true;
+}
+
+function getAttrData(sample, attr, attrStack) {
   var attrData = {"total":0, "data":{}};
   sample.forEach(function(item, index){
+    if (!isValidData(item, attrStack)) {
+      continue;
+    }
+    
     if (attrData["data"][item[attr]] != undefined) {
       attrData["data"][item[attr]]++;
     } else {
