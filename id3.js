@@ -17,6 +17,7 @@ var testSample = [
 
 function isValidData(data, attrs) {
   if (attrs == undefined || attrs == null) {
+    console.log("invalid attrs");
     return true;
   }
   
@@ -26,6 +27,7 @@ function isValidData(data, attrs) {
       return false;
     }
   });
+  console.log("ok data");
   return true;
 }
 
