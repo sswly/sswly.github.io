@@ -26,15 +26,14 @@ function getEntropy(sample, attr) {
     }
     total++;
   });
-  console.log("total=" + total);
-  console.log("attr num=" + JSON.stringify(attrClassNum));
+  //console.log("attr num=" + JSON.stringify(attrClassNum));
   
   var entropy = 0.0;
   Object.keys(attrClassNum).forEach(function(item, index){
-    alert(attrClassNum[item]);
     entropy += -(attrClassNum[item] / total) * (Math.log(attrClassNum[item] / total) / Math.log(2));
   });
   return entropy;
-  //return -(9/14)*(Math.log(9/14)/Math.log(2))-(5/14)*(Math.log(5/14)/Math.log(2));
 }
 
+function getGain(sample, attrMain, attrGain) {
+}
