@@ -117,6 +117,7 @@ function genDecisionTree(sample, attr, decisionTree) {
       } else {
         newDecisionTree = decisionTree.concat({"attr":decisionAttr, "value":item});
       }
+      console.log("Direction: " + item);
       genDecisionTree(sample, attr, newDecisionTree);
     });
   }
