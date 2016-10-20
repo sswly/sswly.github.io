@@ -78,7 +78,7 @@ function getEntropy(sample, attr, attrStack) {
     entropy += -(attrData["data"][item] / attrData["total"]) * (Math.log(attrData["data"][item] / attrData["total"]) / Math.log(2));
   });
   if (entropy == 0.0) {
-    console.log("entropy is zero");
+    console.log("Decision branch: " + JSON.stringify(decisionTree));
   }
   return entropy;
 }
@@ -116,7 +116,8 @@ function getDecisionAttr(sample, attr, attrStack) {
     
     var gain = getGain(sample, attr, item, attrStack);
     if (gain == 0.0) {
-      return null;
+//       decision["gain"] = 0.0;
+      return;
     }
     
     if (gain > decision["gain"]) {
@@ -125,6 +126,9 @@ function getDecisionAttr(sample, attr, attrStack) {
     }
   });
 //   console.log("Decision: " + JSON.stringify(decision));
+  if (decision["gain"] == 0.0) {
+    return null;
+  }
   return decision["attr"];
 }
 
@@ -134,8 +138,8 @@ function genDecisionBranch(sample, attr, decisionTree) {
 //     console.log("Decision Node: " + decisionAttr);
     var attrData = getAttrData(sample, decisionAttr, decisionTree);
     if (attrData["total"] <= 1) {
-      console.log("Decision branch: " + JSON.stringify(decisionTree));
-      console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
+//       console.log("Decision branch: " + JSON.stringify(decisionTree));
+//       console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
       return;
     }
     Object.keys(attrData["data"]).forEach(function(item, index){
@@ -149,13 +153,13 @@ function genDecisionBranch(sample, attr, decisionTree) {
       genDecisionBranch(sample, attr, newDecisionTree);
     });
   } else {
-    console.log("Decision branch: " + JSON.stringify(decisionTree));
-    console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
+//     console.log("Decision branch: " + JSON.stringify(decisionTree));
+//     console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
   }
 }
 
 function test() {
-  console.log("Version: 1.0.1.2");
+  console.log("Version: 1.0.1.3");
   console.log("Release: the decision brach can generate successfully but need to optimize");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
