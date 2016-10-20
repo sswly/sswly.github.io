@@ -105,31 +105,30 @@ function getDecisionAttr(sample, attr, attrStack) {
   return decision["attr"];
 }
 
-function getDecisionTree(sample, attr) {
-  var attrStack = null;
-  var decisionAttr = getDecisionAttr(sample, attr, attrStack);
+function genDecisionTree(sample, attr, decisionTree) {
+  var decisionAttr = getDecisionAttr(sample, attr, decisionTree);
   console.log("decisionAttr=" + decisionAttr);
   if (decisionAttr != null) {
-    var attrData = getAttrData(sample, decisionAttr, attrStack);
+    var attrData = getAttrData(sample, decisionAttr, decisionTree);
     Object.keys(attrData["data"]).forEach(function(item, index){
-      var newAttrStack = null;
-      if (attrStack == null) {
-        newAttrStack = [{"attr":decisionAttr, "value":item}];
+      var newDecisionTree = null;
+      if (decisionTree == null) {
+        newDecisionTree = [{"attr":decisionAttr, "value":item}];
       } else {
-        newAttrStack = attrStack.concat({"attr":decisionAttr, "value":item});
+        newDecisionTree = decisionTree.concat({"attr":decisionAttr, "value":item});
       }
-      console.log("inner decisionAttr=" + getDecisionAttr(sample, attr, newAttrStack));
+      genDecisionTree(sample, attr, newDecisionTree);
     });
   }
 }
 
 function test() {
-  console.log("entropy=" + getEntropy(testSample, "Play ball", null));
-  Object.keys(testSample[0]).forEach(function(item, index){
-    console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item, null));
-  });
-  console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", null));
-  console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}]));
-  console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Rain"}]));
-  getDecisionTree(testSample, "Play ball");
+//   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
+//   Object.keys(testSample[0]).forEach(function(item, index){
+//     console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item, null));
+//   });
+//   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", null));
+//   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}]));
+//   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Rain"}]));
+  genDecisionTree(testSample, "Play ball", null);
 }
