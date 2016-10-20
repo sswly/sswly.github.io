@@ -114,7 +114,7 @@ function getDecisionTree(sample, attr) {
     Object.keys(attrData["data"]).forEach(function(item, index){
       var newAttrStack = null;
       if (attrStack == null) {
-        newAttrStack = [{"attr":attrGain, "value":item}];
+        newAttrStack = [{"attr":decisionAttr, "value":attrData["data"][decisionAttr]}];
       } else {
         newAttrStack = attrStack.concat({"attr":attrGain, "value":item});
       }
