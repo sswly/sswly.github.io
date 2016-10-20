@@ -102,6 +102,7 @@ function getDecisionAttr(sample, attr, attrStack) {
       decision["attr"] = item;
     }
   });
+  console.log("Decision: " + JSON.stringify(decision));
   return decision["attr"];
 }
 
@@ -117,7 +118,7 @@ function genDecisionTree(sample, attr, decisionTree) {
       } else {
         newDecisionTree = decisionTree.concat({"attr":decisionAttr, "value":item});
       }
-      console.log("Direction: " + item);
+//       console.log("Direction: " + item);
       genDecisionTree(sample, attr, newDecisionTree);
     });
   } else {
