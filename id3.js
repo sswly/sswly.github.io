@@ -77,6 +77,9 @@ function getEntropy(sample, attr, attrStack) {
   Object.keys(attrData["data"]).forEach(function(item, index){
     entropy += -(attrData["data"][item] / attrData["total"]) * (Math.log(attrData["data"][item] / attrData["total"]) / Math.log(2));
   });
+  if (entropy == 0.0) {
+    console.log("entropy is zero");
+  }
   return entropy;
 }
 
@@ -148,7 +151,7 @@ function genDecisionBranch(sample, attr, decisionTree) {
 }
 
 function test() {
-  console.log("Version: 1.0.1.0");
+  console.log("Version: 1.0.1.1");
   console.log("Release: the decision brach can generate successfully but need to optimize");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
