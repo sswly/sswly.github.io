@@ -30,6 +30,21 @@ function isValidData(data, attrs) {
   return result;
 }
 
+function containsAttr(attrs, attr) {
+  if (attrs == undefined || attrs == null) {
+    return false;
+  }
+  
+  var result = false;
+  attrs.forEach(function(item, index){
+    if (item["attr"] == attr) {
+      result = true;
+      return;
+    }
+  });
+  return result;
+}
+
 function getAttrData(sample, attr, attrStack) {
   var attrData = {"total":0, "data":{}};
   sample.forEach(function(item, index){
@@ -69,14 +84,14 @@ function getGain(sample, attr, attrGain, attrStack) {
   return gain;
 }
 
-function getDecisionAttr(sample, attr) {
+function getDecisionAttr(sample, attr, attrStack) {
   var decision = {"gain":0.0};
   Object.keys(sample[0]).forEach(function(item, index){
-    if (attr == item) {
+    if (attr == item || containsAttr(attrStack, item)) {
       return;
     }
     
-    var gain = getGain(sample, attr, item, null);
+    var gain = getGain(sample, attr, item, attrStack);
     if (gain > decision["gain"]) {
       decision["gain"] = gain;
       decision["attr"] = item;
@@ -90,5 +105,6 @@ function test() {
   Object.keys(testSample[0]).forEach(function(item, index){
     console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item, null));
   });
-  console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball"));
+  console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", null));
+  console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}]));
 }
