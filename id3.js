@@ -142,7 +142,7 @@ function genDecisionBranch(sample, attr, decisionTree) {
     });
   } else {
     attrData = getAttrData(sample, attr, decisionTree)
-    console.log("Decision branch: " + JSON.stringify(decisionTree) + "=>" + JSON.stringify(attrData["data"]));
+    console.log("Decision branch: " + JSON.stringify(decisionTree) + "=>" + Object.keys(attrData["data"])[0]);
   }
 }
 
