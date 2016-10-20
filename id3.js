@@ -60,8 +60,6 @@ function getAttrData(sample, attr, attrStack) {
     attrData["total"]++;
   });
   
-//   if (attrData["total"] <= 1)
-//     console.log("left one: " + JSON.stringify(attrData));
   return attrData;
 }
 
@@ -90,7 +88,6 @@ function getGain(sample, attr, attrGain, attrStack) {
   }
 
   var attrData = getAttrData(sample, attrGain, null);
-  
   if (attrData["total"] <= 1) {
     return gain;
   }
@@ -117,32 +114,21 @@ function getDecisionAttr(sample, attr, attrStack) {
       return;
     }
     
-    var gain = getGain(sample, attr, item, attrStack);
-    if (gain == 0.0) {
-//       decision["gain"] = 0.0;
-      return;
-    }
-    
+    var gain = getGain(sample, attr, item, attrStack); 
     if (gain > decision["gain"]) {
       decision["gain"] = gain;
       decision["attr"] = item;
     }
   });
-//   console.log("Decision: " + JSON.stringify(decision));
-  if (decision["gain"] == 0.0) {
-    return null;
-  }
+
   return decision["attr"];
 }
 
 function genDecisionBranch(sample, attr, decisionTree) {
   var decisionAttr = getDecisionAttr(sample, attr, decisionTree);
   if (decisionAttr != null && decisionAttr != undefined) {
-//     console.log("Decision Node: " + decisionAttr);
     var attrData = getAttrData(sample, decisionAttr, decisionTree);
     if (attrData["total"] <= 1) {
-//       console.log("Decision branch: " + JSON.stringify(decisionTree));
-//       console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
       return;
     }
     Object.keys(attrData["data"]).forEach(function(item, index){
@@ -152,17 +138,16 @@ function genDecisionBranch(sample, attr, decisionTree) {
       } else {
         newDecisionTree = decisionTree.concat({"attr":decisionAttr, "value":item});
       }
-//       console.log("Direction: " + item);
       genDecisionBranch(sample, attr, newDecisionTree);
     });
   } else {
-    console.log("Decision branch: " + JSON.stringify(decisionTree));
-    console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
+    attrData = getAttrData(sample, attr, decisionTree)
+    console.log("Decision branch: " + JSON.stringify(decisionTree) + "=>" + JSON.stringify(attrData["data"]));
   }
 }
 
 function test() {
-  console.log("Version: 1.0.1.5");
+  console.log("Version: 1.0.1.6");
   console.log("Release: the decision brach can generate successfully but need to optimize");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
