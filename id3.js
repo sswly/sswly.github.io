@@ -148,7 +148,7 @@ function genDecisionBranch(sample, attr, decisionTree) {
 }
 
 function test() {
-  console.log("Version: 1.0.0.1");
+  console.log("Version: 1.0.0.2");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
 //     console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item, null));
