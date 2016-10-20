@@ -84,8 +84,12 @@ function getEntropy(sample, attr, attrStack) {
 }
 
 function getGain(sample, attr, attrGain, attrStack) {
-  var attrData = getAttrData(sample, attrGain, null);
   var gain = getEntropy(sample, attr);
+  if (gain == 0.0) {
+    return gain;
+  }
+
+  var attrData = getAttrData(sample, attrGain, null);
   
   if (attrData["total"] <= 1) {
     return gain;
@@ -145,13 +149,13 @@ function genDecisionBranch(sample, attr, decisionTree) {
       genDecisionBranch(sample, attr, newDecisionTree);
     });
   } else {
-//     console.log("Decision branch: " + JSON.stringify(decisionTree));
-//     console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
+    console.log("Decision branch: " + JSON.stringify(decisionTree));
+    console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
   }
 }
 
 function test() {
-  console.log("Version: 1.0.1.1");
+  console.log("Version: 1.0.1.2");
   console.log("Release: the decision brach can generate successfully but need to optimize");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
