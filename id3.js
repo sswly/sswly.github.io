@@ -15,47 +15,41 @@ svar testSample = [
   {"Outlook":"Rain","Temperature":"Mild","Humidity":"High","Wind":"Strong","Play ball":"No"},
 ];
 
-function Sample(attrs) {
-  this.attrs = attrs;
-}
-
-Sample.prototype.isValid(restrain) {
-}
-
-function isValidData(data, attrs) {
-  if (attrs == undefined || attrs == null) {
-    return true;
-  }
-  
-  var result = true;
-  attrs.forEach(function(item, index){
-    if (data[item["attr"]] != item["value"]) {
-      result = false;
-      return;
+var Sample = {
+  isValidData: function(data, constraint) {
+    if (constraint == undefined || constraint == null) {
+      return true;
     }
-  });
-  return result;
-}
 
-function containsAttr(attrs, attr) {
-  if (attrs == undefined || attrs == null) {
-    return false;
-  }
-  
-  var result = false;
-  attrs.forEach(function(item, index){
-    if (item["attr"] == attr) {
-      result = true;
-      return;
+    var result = true;
+    constraint.forEach(function(item, index){
+      if (data[item["attr"]] != item["value"]) {
+        result = false;
+        return;
+      }
+    });
+    return result;
+  },
+  isValidAttr: function(attr, constraint) {
+    if (constraint == undefined || constraint == null) {
+      return false;
     }
-  });
-  return result;
+
+    var result = false;
+    constraint.forEach(function(item, index){
+      if (item["attr"] == attr) {
+        result = true;
+        return;
+      }
+    });
+    return result;
+  },
 }
 
 function getAttrData(sample, attr, attrStack) {
   var attrData = {"total":0, "data":{}};
   sample.forEach(function(item, index){
-    if (!isValidData(item, attrStack)) {
+    if (!Sample.isValidData(item, attrStack)) {
       return;
     }
     
@@ -117,7 +111,7 @@ function getDecisionAttr(sample, attr, attrStack) {
   }
   var decision = {"gain":0.0};
   Object.keys(sample[0]).forEach(function(item, index){
-    if (attr == item || containsAttr(attrStack, item)) {
+    if (attr == item || Sample.isValidAttr(attrStack, item)) {
       return;
     }
     
@@ -154,7 +148,7 @@ function genDecisionBranch(sample, attr, decisionTree) {
 }
 
 function test() {
-  console.log("Version: 1.0.2.0");
+  console.log("Version: 1.0.2.1");
   console.log("Release: optimized and need to show better");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
