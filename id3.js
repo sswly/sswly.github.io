@@ -112,4 +112,5 @@ function test() {
   });
   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", null));
   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}]));
+  console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Rain"}]));
 }
