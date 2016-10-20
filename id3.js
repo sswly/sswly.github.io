@@ -108,6 +108,9 @@ function getGain(sample, attr, attrGain, attrStack) {
 }
 
 function getDecisionAttr(sample, attr, attrStack) {
+  if (getEntropy(sample, attr, attrStack) == 0) {
+    return null;
+  }
   var decision = {"gain":0.0};
   Object.keys(sample[0]).forEach(function(item, index){
     if (attr == item || containsAttr(attrStack, item)) {
@@ -159,7 +162,7 @@ function genDecisionBranch(sample, attr, decisionTree) {
 }
 
 function test() {
-  console.log("Version: 1.0.1.4");
+  console.log("Version: 1.0.1.5");
   console.log("Release: the decision brach can generate successfully but need to optimize");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
