@@ -60,8 +60,8 @@ function getAttrData(sample, attr, attrStack) {
     attrData["total"]++;
   });
   
-  if (attrData["total"] <= 1)
-    console.log("left one: " + JSON.stringify(attrData));
+//   if (attrData["total"] <= 1)
+//     console.log("left one: " + JSON.stringify(attrData));
   return attrData;
 }
 
@@ -148,7 +148,7 @@ function genDecisionBranch(sample, attr, decisionTree) {
 }
 
 function test() {
-  console.log("Version: 1.0.0.2");
+  console.log("Version: 1.0.0.3");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
 //     console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item, null));
