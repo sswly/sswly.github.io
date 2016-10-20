@@ -107,8 +107,8 @@ function getDecisionAttr(sample, attr, attrStack) {
 
 function genDecisionTree(sample, attr, decisionTree) {
   var decisionAttr = getDecisionAttr(sample, attr, decisionTree);
-  console.log("decisionAttr=" + decisionAttr);
-  if (decisionAttr != null) {
+  console.log("Decision Node: " + decisionAttr);
+  if (decisionAttr != null && decisionAttr != undefined) {
     var attrData = getAttrData(sample, decisionAttr, decisionTree);
     Object.keys(attrData["data"]).forEach(function(item, index){
       var newDecisionTree = null;
