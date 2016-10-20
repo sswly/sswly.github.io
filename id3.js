@@ -1,4 +1,4 @@
-var testSample = [
+svar testSample = [
   {"Outlook":"Sunny","Temperature":"Hot","Humidity":"High","Wind":"Weak","Play ball":"No"},
   {"Outlook":"Sunny","Temperature":"Hot","Humidity":"High","Wind":"Strong","Play ball":"No"},
   {"Outlook":"Overcast","Temperature":"Hot","Humidity":"High","Wind":"Weak","Play ball":"Yes"},
@@ -14,6 +14,13 @@ var testSample = [
   {"Outlook":"Overcast","Temperature":"Hot","Humidity":"Normal","Wind":"Weak","Play ball":"Yes"},
   {"Outlook":"Rain","Temperature":"Mild","Humidity":"High","Wind":"Strong","Play ball":"No"},
 ];
+
+function Sample(attrs) {
+  this.attrs = attrs;
+}
+
+Sample.prototype.isValid(restrain) {
+}
 
 function isValidData(data, attrs) {
   if (attrs == undefined || attrs == null) {
