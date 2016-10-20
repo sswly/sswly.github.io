@@ -169,9 +169,9 @@ function test() {
 //     console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item, null));
 //   });
 //   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", null));
-  console.log("getGain=" + getGain(testSample, "Play ball", "Humidity", [{"attr":"Outlook", "value":"Sunny"}]));
-  console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Overcast"}]));
-  console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}, {"attr":"Humidity", "value":"High"}]));
+//   console.log("getGain=" + getGain(testSample, "Play ball", "Humidity", [{"attr":"Outlook", "value":"Sunny"}]));
+//   console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Overcast"}]));
+//   console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}, {"attr":"Humidity", "value":"High"}]));
 //   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Rain"}]));
-//   genDecisionBranch(testSample, "Play ball", null);
+  genDecisionBranch(testSample, "Play ball", null);
 }
