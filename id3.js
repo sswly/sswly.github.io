@@ -78,7 +78,7 @@ function getEntropy(sample, attr, attrStack) {
     entropy += -(attrData["data"][item] / attrData["total"]) * (Math.log(attrData["data"][item] / attrData["total"]) / Math.log(2));
   });
   if (entropy == 0.0) {
-    console.log("Decision branch: " + JSON.stringify(attrStack));
+//     console.log("Decision branch: " + JSON.stringify(attrStack));
   }
   return entropy;
 }
