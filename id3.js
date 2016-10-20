@@ -67,8 +67,13 @@ function getAttrData(sample, attr, attrStack) {
 
 function getEntropy(sample, attr, attrStack) {
   var attrData = getAttrData(sample, attr, attrStack);
-  
   var entropy = 0.0;
+
+  if (attrData["total"] <= 1) {
+    // all sample belong to same class
+    return entropy;
+  }
+  
   Object.keys(attrData["data"]).forEach(function(item, index){
     entropy += -(attrData["data"][item] / attrData["total"]) * (Math.log(attrData["data"][item] / attrData["total"]) / Math.log(2));
   });
@@ -77,8 +82,12 @@ function getEntropy(sample, attr, attrStack) {
 
 function getGain(sample, attr, attrGain, attrStack) {
   var attrData = getAttrData(sample, attrGain, null);
-  
   var gain = getEntropy(sample, attr);
+  
+  if (attrData["total"] <= 1) {
+    return gain;
+  }
+  
   Object.keys(attrData["data"]).forEach(function(item, index){
     var newAttrStack = null;
     if (attrStack == null) {
@@ -99,6 +108,10 @@ function getDecisionAttr(sample, attr, attrStack) {
     }
     
     var gain = getGain(sample, attr, item, attrStack);
+    if (gain == 0.0) {
+      return null;
+    }
+    
     if (gain > decision["gain"]) {
       decision["gain"] = gain;
       decision["attr"] = item;
