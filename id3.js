@@ -121,11 +121,16 @@ function getDecisionAttr(sample, attr, attrStack) {
   return decision["attr"];
 }
 
-function genDecisionTree(sample, attr, decisionTree) {
+function genDecisionBranch(sample, attr, decisionTree) {
   var decisionAttr = getDecisionAttr(sample, attr, decisionTree);
   if (decisionAttr != null && decisionAttr != undefined) {
 //     console.log("Decision Node: " + decisionAttr);
     var attrData = getAttrData(sample, decisionAttr, decisionTree);
+    if (attrData["total"] <= 1) {
+      console.log("Decision branch: " + JSON.stringify(decisionTree));
+      console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
+      return;
+    }
     Object.keys(attrData["data"]).forEach(function(item, index){
       var newDecisionTree = null;
       if (decisionTree == null) {
@@ -134,11 +139,11 @@ function genDecisionTree(sample, attr, decisionTree) {
         newDecisionTree = decisionTree.concat({"attr":decisionAttr, "value":item});
       }
 //       console.log("Direction: " + item);
-      genDecisionTree(sample, attr, newDecisionTree);
+      genDecisionBranch(sample, attr, newDecisionTree);
     });
   } else {
-    console.log("Decision branch: " + JSON.stringify(decisionTree));
-    console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
+//     console.log("Decision branch: " + JSON.stringify(decisionTree));
+//     console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
   }
 }
 
@@ -151,5 +156,5 @@ function test() {
 //   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", null));
 //   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}]));
 //   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Rain"}]));
-  genDecisionTree(testSample, "Play ball", null);
+  genDecisionBranch(testSample, "Play ball", null);
 }
