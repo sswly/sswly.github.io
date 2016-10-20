@@ -108,7 +108,7 @@ function getDecisionAttr(sample, attr, attrStack) {
 function genDecisionTree(sample, attr, decisionTree) {
   var decisionAttr = getDecisionAttr(sample, attr, decisionTree);
   if (decisionAttr != null && decisionAttr != undefined) {
-    console.log("Decision Node: " + decisionAttr);
+//     console.log("Decision Node: " + decisionAttr);
     var attrData = getAttrData(sample, decisionAttr, decisionTree);
     Object.keys(attrData["data"]).forEach(function(item, index){
       var newDecisionTree = null;
@@ -121,7 +121,8 @@ function genDecisionTree(sample, attr, decisionTree) {
       genDecisionTree(sample, attr, newDecisionTree);
     });
   } else {
-    console.log("Leaf: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
+    console.log("Decision branch: " + JSON.stringify(decisionTree));
+    console.log("Result: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
   }
 }
 
