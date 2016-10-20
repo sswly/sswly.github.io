@@ -59,7 +59,7 @@ function getAttrData(sample, attr, attrStack) {
     }
     attrData["total"]++;
   });
-  console.log("attr data: " + JSON.stringify(attrData));
+//   console.log("attr data: " + JSON.stringify(attrData));
   return attrData;
 }
 
