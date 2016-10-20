@@ -120,6 +120,8 @@ function genDecisionTree(sample, attr, decisionTree) {
       console.log("Direction: " + item);
       genDecisionTree(sample, attr, newDecisionTree);
     });
+  } else {
+    console.log("Leaf: " + JSON.stringify(getAttrData(sample, attr, decisionTree)));
   }
 }
 
