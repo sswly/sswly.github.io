@@ -59,7 +59,9 @@ function getAttrData(sample, attr, attrStack) {
     }
     attrData["total"]++;
   });
-//   console.log("attr data: " + JSON.stringify(attrData));
+  
+  if (attrData["total"] <= 1)
+    console.log("left one: " + JSON.stringify(attrData));
   return attrData;
 }
 
