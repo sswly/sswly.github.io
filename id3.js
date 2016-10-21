@@ -80,7 +80,7 @@ ID3 = {
   },
   
   getGain: function(sampleSet, attr, attrGain, constraint) {
-    var gain = getEntropy(sampleSet, attr);
+    var gain = ID3.getEntropy(sampleSet, attr);
     if (gain == 0.0) {
       return gain;
     }
@@ -93,13 +93,13 @@ ID3 = {
       } else {
         newConstraint = constraint.concat({"attr":attrGain, "value":item});
       }
-      gain -= (attrData["data"][item] / attrData["total"]) * getEntropy(sampleSet, attr, newConstraint);
+      gain -= (attrData["data"][item] / attrData["total"]) * ID3.getEntropy(sampleSet, attr, newConstraint);
     });
     return gain;
   },
   
   getDecisionNode: function(sample, attr, constraint) {
-    if (getEntropy(sample, attr, constraint) == 0) {
+    if (ID3.getEntropy(sample, attr, constraint) == 0) {
       return null;
     }
     var decision = {"gain":0.0};
@@ -108,7 +108,7 @@ ID3 = {
         return;
       }
 
-      var gain = getGain(sample, attr, item, constraint); 
+      var gain = ID3.getGain(sample, attr, item, constraint); 
       if (gain > decision["gain"]) {
         decision["gain"] = gain;
         decision["attr"] = item;
