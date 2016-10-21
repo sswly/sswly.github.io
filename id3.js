@@ -17,7 +17,7 @@ var testSample = [
 
 Sample = {
   isValidData: function(sample, constraint) {
-    if (constraint == undefined || constraint == null) {
+    if (constraint == null) {
       return true;
     }
 
@@ -30,8 +30,9 @@ Sample = {
     });
     return result;
   },
+  
   isValidAttr: function(attr, constraint) {
-    if (constraint == undefined || constraint == null) {
+    if (constraint == null) {
       return false;
     }
 
@@ -117,7 +118,11 @@ ID3 = {
     return decision["attr"];
   },
 
-  genDecisionTree: function(sample, attr, decisionTree = null) {
+  genDecisionTree: function(sample, attr, decisionTree) {
+    if (decisionTree == undefined) {
+      decisionTree = null;
+    }
+    
     var decisionAttr = getDecisionNode(sample, attr, decisionTree);
     if (decisionAttr != null && decisionAttr != undefined) {
       var attrData = SampleSet.count(sample, decisionAttr, decisionTree);
