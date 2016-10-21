@@ -64,6 +64,18 @@ SampleSet = {
     });
 
     return attrData;
+  },
+  
+  buildFromTable: function(table) {
+    var sampleSet = [];
+    for(var i = 1; i < table.rows.length;i++){
+      var sample = {};
+      sampleSet.push(sample);
+      for(var j = 0; j < table.rows[i].cells.length; j++){
+        sample[table.rows[0].cells[j].innerHTML] = table.rows[i].cells[j].innerHTML;
+      }
+		}
+    console.log("Sample Set: " + JSON.stringify(sampleSet));
   }
 }
 
@@ -155,7 +167,7 @@ ID3 = {
 }
 
 function test() {
-  console.log("Version: 1.0.4.0");
+  console.log("Version: 1.0.4.1");
   console.log("Release: show with vis");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
