@@ -72,7 +72,7 @@ SampleSet = {
       var sample = {};
       sampleSet.push(sample);
       for(var j = 0; j < table.rows[i].cells.length; j++){
-        sample[table.rows[0].cells[j].innerHTML] = table.rows[i].cells[j].innerHTML;
+        sample[table.rows[0].cells[j].innerHTML.replace(/<.+?>/gim,'')] = table.rows[i].cells[j].innerHTML.replace(/<.+?>/gim,'');
       }
 		}
     console.log("Sample Set: " + JSON.stringify(sampleSet));
