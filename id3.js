@@ -72,7 +72,8 @@ SampleSet = {
       var sample = {};
       sampleSet.push(sample);
       for(var j = 0; j < table.rows[i].cells.length; j++){
-        sample[table.rows[0].cells[j].innerHTML.replace(/<.+?>/gim,'')] = table.rows[i].cells[j].innerHTML.replace(/<.+?>/gim,'');
+	var attr = table.rows[0].cells[j].innerHTML.replace(/<.+?>/gim,'').replace(/\\n\s*/gim,'');
+        sample[attr] = table.rows[i].cells[j].innerHTML.replace(/<.+?>/gim,'').replace(/\\n\s*/gim,'');
       }
 		}
     console.log("Sample Set: " + JSON.stringify(sampleSet));
