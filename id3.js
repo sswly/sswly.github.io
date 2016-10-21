@@ -75,8 +75,9 @@ SampleSet = {
 	var attr = table.rows[0].cells[j].innerHTML.replace(/<.+?>/gim,'').replace(/\n\s*/gim,'');
         sample[attr] = table.rows[i].cells[j].innerHTML.replace(/<.+?>/gim,'').replace(/\s*/gim,'');
       }
-		}
+    }
     console.log("Sample Set: " + JSON.stringify(sampleSet));
+    return sampleSet;
   }
 }
 
@@ -168,7 +169,7 @@ ID3 = {
 }
 
 function test(table) {
-  console.log("Version: 1.0.4.5");
+  console.log("Version: 1.0.4.6");
   console.log("Release: show with vis");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
@@ -179,7 +180,7 @@ function test(table) {
 //   console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Overcast"}]));
 //   console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}, {"attr":"Humidity", "value":"High"}]));
 //   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Rain"}]));
-  ID3.genDecisionbranch(testSample, "Play ball");
+  var sampleSet = SampleSet.buildFromTable(table);
+  ID3.genDecisionbranch(sampleSet, "Play ball");
   console.log("Tree: " + JSON.stringify(ID3.decisionTree));
-  SampleSet.buildFromTable(table);
 }
