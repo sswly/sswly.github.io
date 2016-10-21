@@ -136,7 +136,7 @@ ID3 = {
         } else {
           newDecisionTree = decisionTree.concat({"attr":decisionAttr, "value":item});
         }
-        genDecisionTree(sample, attr, newDecisionTree);
+        ID3.genDecisionTree(sample, attr, newDecisionTree);
       });
     } else {
       attrData = SampleSet.count(sample, attr, decisionTree)
