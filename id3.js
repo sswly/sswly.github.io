@@ -46,26 +46,28 @@ var Sample = {
   },
 }
 
-function getAttrData(sample, attr, attrStack) {
-  var attrData = {"total":0, "data":{}};
-  sample.forEach(function(item, index){
-    if (!Sample.isValidData(item, attrStack)) {
-      return;
-    }
-    
-    if (attrData["data"][item[attr]] != undefined) {
-      attrData["data"][item[attr]]++;
-    } else {
-      attrData["data"][item[attr]] = 1;
-    }
-    attrData["total"]++;
-  });
-  
-  return attrData;
+var SampleSet = {
+  count: function(sample, attr, attrStack) {
+    var attrData = {"total":0, "data":{}};
+    sample.forEach(function(item, index){
+      if (!Sample.isValidData(item, attrStack)) {
+        return;
+      }
+
+      if (attrData["data"][item[attr]] != undefined) {
+        attrData["data"][item[attr]]++;
+      } else {
+        attrData["data"][item[attr]] = 1;
+      }
+      attrData["total"]++;
+    });
+
+    return attrData;
+  }
 }
 
 function getEntropy(sample, attr, attrStack) {
-  var attrData = getAttrData(sample, attr, attrStack);
+  var attrData = SampleSet.count(sample, attr, attrStack);
   var entropy = 0.0;
 
   if (attrData["total"] <= 1) {
@@ -88,7 +90,7 @@ function getGain(sample, attr, attrGain, attrStack) {
     return gain;
   }
 
-  var attrData = getAttrData(sample, attrGain, null);
+  var attrData = SampleSet.count(sample, attrGain, null);
   if (attrData["total"] <= 1) {
     return gain;
   }
@@ -128,7 +130,7 @@ function getDecisionAttr(sample, attr, attrStack) {
 function genDecisionBranch(sample, attr, decisionTree) {
   var decisionAttr = getDecisionAttr(sample, attr, decisionTree);
   if (decisionAttr != null && decisionAttr != undefined) {
-    var attrData = getAttrData(sample, decisionAttr, decisionTree);
+    var attrData = SampleSet.count(sample, decisionAttr, decisionTree);
     if (attrData["total"] <= 1) {
       return;
     }
@@ -142,13 +144,13 @@ function genDecisionBranch(sample, attr, decisionTree) {
       genDecisionBranch(sample, attr, newDecisionTree);
     });
   } else {
-    attrData = getAttrData(sample, attr, decisionTree)
+    attrData = SampleSet.count(sample, attr, decisionTree)
     console.log("Decision branch: " + JSON.stringify(decisionTree) + "=>" + Object.keys(attrData["data"])[0]);
   }
 }
 
 function test() {
-  console.log("Version: 1.0.2.1");
+  console.log("Version: 1.0.2.2");
   console.log("Release: optimized and need to show better");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
