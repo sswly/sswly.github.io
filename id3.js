@@ -123,7 +123,7 @@ ID3 = {
       decisionTree = null;
     }
     
-    var decisionAttr = getDecisionNode(sample, attr, decisionTree);
+    var decisionAttr = ID3.getDecisionNode(sample, attr, decisionTree);
     if (decisionAttr != null && decisionAttr != undefined) {
       var attrData = SampleSet.count(sample, decisionAttr, decisionTree);
       if (attrData["total"] <= 1) {
