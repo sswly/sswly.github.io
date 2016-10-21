@@ -129,7 +129,7 @@ ID3 = {
     
     var decisionNode = ID3.getDecisionNode(sample, attr, constraint);
     if (decisionNode != null && decisionNode != undefined) {
-      ID3.decisionTree.nodes.push({id: decisionNode, label: decisionNode});
+      ID3.decisionTree.nodes.push({id: decisionNode, label: decisionNode, shape: "box"});
       if (from != null) {
         ID3.decisionTree.edges.push({from: from, to: decisionNode, label: constraint[constraint.length - 1]["value"]});
       }
@@ -147,7 +147,7 @@ ID3 = {
     } else {
       attrData = SampleSet.count(sample, attr, constraint);
       var leaf = Object.keys(attrData["data"])[0];
-      ID3.decisionTree.nodes.push({id: from + "-" + leaf, label: leaf});
+      ID3.decisionTree.nodes.push({id: from + "-" + leaf, label: leaf, shape: "box"});
       ID3.decisionTree.edges.push({from: from, to: from + "-" + leaf, label: constraint[constraint.length - 1]["value"]});
       console.log("Decision branch: " + JSON.stringify(constraint) + "=>" + leaf);
     }
