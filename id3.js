@@ -79,19 +79,19 @@ ID3 = {
     return entropy;
   },
   
-  getGain: function(sampleSet, attr, attrGain, constraint) {
+  getGain: function(sampleSet, attr, gainAttr, constraint) {
     var gain = ID3.getEntropy(sampleSet, attr);
     if (gain == 0.0) {
       return gain;
     }
 
-    var attrData = SampleSet.count(sampleSet, attrGain, null);
+    var attrData = SampleSet.count(sampleSet, gainAttr, null);
     Object.keys(attrData["data"]).forEach(function(item, index){
       var newConstraint = null;
       if (constraint == null) {
-        newConstraint = [{"attr":attrGain, "value":item}];
+        newConstraint = [{"attr":gainAttr, "value":item}];
       } else {
-        newConstraint = constraint.concat({"attr":attrGain, "value":item});
+        newConstraint = constraint.concat({"attr":gainAttr, "value":item});
       }
       gain -= (attrData["data"][item] / attrData["total"]) * ID3.getEntropy(sampleSet, attr, newConstraint);
     });
@@ -123,18 +123,15 @@ ID3 = {
       decisionTree = null;
     }
     
-    var decisionAttr = ID3.getDecisionNode(sample, attr, decisionTree);
-    if (decisionAttr != null && decisionAttr != undefined) {
-      var attrData = SampleSet.count(sample, decisionAttr, decisionTree);
-      if (attrData["total"] <= 1) {
-        return;
-      }
+    var decisionNode = ID3.getDecisionNode(sample, attr, decisionTree);
+    if (decisionNode != null && decisionNode != undefined) {
+      var attrData = SampleSet.count(sample, decisionNode, decisionTree);
       Object.keys(attrData["data"]).forEach(function(item, index){
         var newDecisionTree = null;
         if (decisionTree == null) {
-          newDecisionTree = [{"attr":decisionAttr, "value":item}];
+          newDecisionTree = [{"attr":decisionNode, "value":item}];
         } else {
-          newDecisionTree = decisionTree.concat({"attr":decisionAttr, "value":item});
+          newDecisionTree = decisionTree.concat({"attr":decisionNode, "value":item});
         }
         ID3.genDecisionTree(sample, attr, newDecisionTree);
       });
@@ -146,8 +143,8 @@ ID3 = {
 }
 
 function test() {
-  console.log("Version: 1.0.2.4");
-  console.log("Release: optimized and need to show better");
+  console.log("Version: 1.0.3.0");
+  console.log("Release: refactor with object");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
 //     console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item, null));
