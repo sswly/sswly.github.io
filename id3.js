@@ -68,6 +68,7 @@ SampleSet = {
 }
 
 ID3 = {
+  tree: {nodes: [], edges: []},
   getEntropy: function(sampleSet, attr, constraint) {
     var attrData = SampleSet.count(sampleSet, attr, constraint);
     
@@ -125,6 +126,7 @@ ID3 = {
     
     var decisionNode = ID3.getDecisionNode(sample, attr, decisionTree);
     if (decisionNode != null && decisionNode != undefined) {
+      tree[nodes].push({id: decisionNode, label: decisionNode});
       var attrData = SampleSet.count(sample, decisionNode, decisionTree);
       Object.keys(attrData["data"]).forEach(function(item, index){
         var newDecisionTree = null;
@@ -136,7 +138,8 @@ ID3 = {
         ID3.genDecisionTree(sample, attr, newDecisionTree);
       });
     } else {
-      attrData = SampleSet.count(sample, attr, decisionTree)
+      attrData = SampleSet.count(sample, attr, decisionTree);
+      tree[nodes].push({id: attrData["data"])[0], label: attrData["data"])[0]});
       console.log("Decision branch: " + JSON.stringify(decisionTree) + "=>" + Object.keys(attrData["data"])[0]);
     }
   },
@@ -155,4 +158,5 @@ function test() {
 //   console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}, {"attr":"Humidity", "value":"High"}]));
 //   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Rain"}]));
   ID3.genDecisionTree(testSample, "Play ball");
+  console.log("Tree: " + JSON.stringify(ID3.tree)
 }
