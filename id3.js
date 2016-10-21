@@ -72,8 +72,8 @@ SampleSet = {
       var sample = {};
       sampleSet.push(sample);
       for(var j = 0; j < table.rows[i].cells.length; j++){
-	var attr = table.rows[0].cells[j].innerHTML.replace(/<.+?>/gim,'').replace(/.n\s*/gim,'');
-        sample[attr] = table.rows[i].cells[j].innerHTML.replace(/<.+?>/gim,'').replace(/.n\s*/gim,'');
+	var attr = table.rows[0].cells[j].innerHTML.replace(/<.+?>/gim,'').replace(/\n\s*/gim,'');
+        sample[attr] = table.rows[i].cells[j].innerHTML.replace(/<.+?>/gim,'').replace(/\s*/gim,'');
       }
 		}
     console.log("Sample Set: " + JSON.stringify(sampleSet));
@@ -168,7 +168,7 @@ ID3 = {
 }
 
 function test(table) {
-  console.log("Version: 1.0.4.4");
+  console.log("Version: 1.0.4.5");
   console.log("Release: show with vis");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
