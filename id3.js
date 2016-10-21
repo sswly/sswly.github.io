@@ -166,8 +166,8 @@ ID3 = {
   },
 }
 
-function test() {
-  console.log("Version: 1.0.4.1");
+function test(table) {
+  console.log("Version: 1.0.4.2");
   console.log("Release: show with vis");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
@@ -180,4 +180,5 @@ function test() {
 //   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Rain"}]));
   ID3.genDecisionbranch(testSample, "Play ball");
   console.log("Tree: " + JSON.stringify(ID3.decisionTree));
+  SampleSet.buildFromTable(table);
 }
