@@ -117,7 +117,7 @@ ID3 = {
     return decision["attr"];
   },
 
-  genDecisionTree: function(sample, attr, decisionTree) {
+  genDecisionTree: function(sample, attr, decisionTree = null) {
     var decisionAttr = getDecisionNode(sample, attr, decisionTree);
     if (decisionAttr != null && decisionAttr != undefined) {
       var attrData = SampleSet.count(sample, decisionAttr, decisionTree);
@@ -141,7 +141,7 @@ ID3 = {
 }
 
 function test() {
-  console.log("Version: 1.0.2.3");
+  console.log("Version: 1.0.2.4");
   console.log("Release: optimized and need to show better");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
@@ -152,5 +152,5 @@ function test() {
 //   console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Overcast"}]));
 //   console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}, {"attr":"Humidity", "value":"High"}]));
 //   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Rain"}]));
-  ID3.genDecisionTree(testSample, "Play ball", null);
+  ID3.genDecisionTree(testSample, "Play ball");
 }
