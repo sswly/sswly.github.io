@@ -71,7 +71,7 @@ SampleSet = {
     for(var i = 1; i < table.rows.length;i++){
       var sample = {};
       sampleSet.push(sample);
-      for(var j = 0; j < table.rows[i].cells.length; j++){
+      for(var j = 1; j < table.rows[i].cells.length; j++){
 	var attr = table.rows[0].cells[j].innerHTML.replace(/<.+?>/gim,'').replace(/\n\s*/gim,'');
         sample[attr] = table.rows[i].cells[j].innerHTML.replace(/<.+?>/gim,'').replace(/\s*/gim,'');
       }
