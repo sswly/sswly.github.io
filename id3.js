@@ -16,14 +16,14 @@ var testSample = [
 ];
 
 var Sample = {
-  isValidData: function(data, constraint) {
+  isValidData: function(sample, constraint) {
     if (constraint == undefined || constraint == null) {
       return true;
     }
 
     var result = true;
     constraint.forEach(function(item, index){
-      if (data[item["attr"]] != item["value"]) {
+      if (sample[item["attr"]] != item["value"]) {
         result = false;
         return;
       }
@@ -47,10 +47,10 @@ var Sample = {
 }
 
 var SampleSet = {
-  count: function(sample, attr, attrStack) {
+  count: function(sampleSet, attr, constraint) {
     var attrData = {"total":0, "data":{}};
-    sample.forEach(function(item, index){
-      if (!Sample.isValidData(item, attrStack)) {
+    sampleSet.forEach(function(item, index){
+      if (!Sample.isValidData(item, constraint)) {
         return;
       }
 
