@@ -120,15 +120,22 @@ ID3 = {
   },
 
   genDecisionbranch: function(sample, attr, constraint) {
+    var from = null;
     if (constraint == undefined) {
       constraint = null;
+    } else {
+      from = constraint[constraint.length - 1]["attr"];
     }
     
     var decisionNode = ID3.getDecisionNode(sample, attr, constraint);
     if (decisionNode != null && decisionNode != undefined) {
       ID3.decisionTree.nodes.push({id: decisionNode, label: decisionNode});
+      if (from != null) {
+        ID3.decisionTree.edges.push({from: from, to: decisionNode, label: constraint[constraint.length - 1]["value"]});
+      }
+
       var attrData = SampleSet.count(sample, decisionNode, constraint);
-      Object.keys(attrData["data"]).forEach(function(item, index){
+      Object.keys(attrData["data"]).forEach(function(item, index){        
         var newConstraint = null;
         if (constraint == null) {
           newConstraint = [{"attr":decisionNode, "value":item}];
