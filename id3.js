@@ -147,7 +147,7 @@ ID3 = {
     } else {
       attrData = SampleSet.count(sample, attr, constraint);
       var leaf = Object.keys(attrData["data"])[0];
-//       ID3.decisionTree.nodes.push({id: leaf, label: leaf});
+      ID3.decisionTree.nodes.push({id: from + "-" + leaf, label: leaf});
       console.log("Decision branch: " + JSON.stringify(constraint) + "=>" + leaf);
     }
   },
