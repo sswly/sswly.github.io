@@ -15,7 +15,7 @@ var testSample = [
   {"Outlook":"Rain","Temperature":"Mild","Humidity":"High","Wind":"Strong","Play ball":"No"},
 ];
 
-var Sample = {
+Sample = {
   isValidData: function(sample, constraint) {
     if (constraint == undefined || constraint == null) {
       return true;
@@ -46,7 +46,7 @@ var Sample = {
   },
 }
 
-var SampleSet = {
+SampleSet = {
   count: function(sampleSet, attr, constraint) {
     var attrData = {"total":0, "data":{}};
     sampleSet.forEach(function(item, index){
