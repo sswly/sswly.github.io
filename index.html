@@ -9,7 +9,15 @@
     <script>
       test();
       var container = document.getElementById('decision_tree');
-      var network = new vis.Network(container, ID3.decisionTree, {});
+      var option = {
+        layout: {
+            hierarchical: {
+                direction: "UD",
+                sortMethod: "directed"
+            }
+        },
+      };
+      var network = new vis.Network(container, ID3.decisionTree, option);
     </script>
   </body>
 </html>
