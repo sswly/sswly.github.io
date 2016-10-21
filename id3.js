@@ -111,7 +111,7 @@ function getDecisionAttr(sample, attr, attrStack) {
   }
   var decision = {"gain":0.0};
   Object.keys(sample[0]).forEach(function(item, index){
-    if (attr == item || Sample.isValidAttr(attrStack, item)) {
+    if (attr == item || Sample.isValidAttr(item, attrStack)) {
       return;
     }
     
