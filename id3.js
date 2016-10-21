@@ -158,5 +158,5 @@ function test() {
 //   console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}, {"attr":"Humidity", "value":"High"}]));
 //   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Rain"}]));
   ID3.genDecisionTree(testSample, "Play ball");
-  console.log("Tree: " + JSON.stringify(ID3.tree)
+  console.log("Tree: " + JSON.stringify(ID3.tree));
 }
