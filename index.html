@@ -4,9 +4,12 @@
     <script src="vis.min.js"></script>
   </head>
   <body>
-    您好！
+    您好！<br>
+    <div id="decision_tree"></div>
     <script>
       test();
+      var container = document.getElementById('decision_tree');
+      var network = new vis.Network(container, ID3.decisionTree, {});
     </script>
   </body>
 </html>
