@@ -155,8 +155,8 @@ ID3 = {
 }
 
 function test() {
-  console.log("Version: 1.0.3.5");
-  console.log("Release: refactor with object");
+  console.log("Version: 1.0.4.0");
+  console.log("Release: show with vis");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
 //   Object.keys(testSample[0]).forEach(function(item, index){
 //     console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item, null));
