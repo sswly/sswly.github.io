@@ -161,14 +161,14 @@ ID3 = {
     } else {
       attrData = SampleSet.count(sample, attr, constraint);
       var leaf = Object.keys(attrData["data"])[0];
-      ID3.decisionTree.nodes.push({id: from + "-" + leaf, label: leaf, shape: "box"});
+      ID3.decisionTree.nodes.push({id: from + "-" + leaf, label: leaf, shape: "triangleDown"});
       ID3.decisionTree.edges.push({from: from, to: from + "-" + leaf, label: constraint[constraint.length - 1]["value"]});
       console.log("Decision branch: " + JSON.stringify(constraint) + "=>" + leaf);
     }
   },
 }
 
-function test(table) {
+function learn(table) {
   console.log("Version: 1.0.5.0");
   console.log("Release: input data by HTML table");
 //   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
