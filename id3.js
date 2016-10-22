@@ -83,6 +83,7 @@ SampleSet = {
 
 ID3 = {
   decisionTree: {nodes: [], edges: []},
+  decisionBrachs: [],
   getEntropy: function(sampleSet, attr, constraint) {
     var attrData = SampleSet.count(sampleSet, attr, constraint);
     
@@ -164,23 +165,21 @@ ID3 = {
       ID3.decisionTree.nodes.push({id: from + "-" + leaf, label: leaf, shape: "triangleDown"});
       ID3.decisionTree.edges.push({from: from, to: from + "-" + leaf, label: constraint[constraint.length - 1]["value"]});
       console.log("Decision branch: " + JSON.stringify(constraint) + "=>" + leaf);
+      ID3.decisionBrachs.push(constraint.concat({"attr":attr, "value":leaf}));
     }
+  },
+  learn: function(table) {
+    console.log("Version: 1.0.5.0");
+    console.log("Release: input data by HTML table");
+    var sampleSet = SampleSet.buildFromTable(table);
+    ID3.genDecisionbranch(sampleSet, "Play ball");
+//     console.log("Tree: " + JSON.stringify(ID3.decisionTree));
+  },
+  makeDecision: function(table) {
+    var sample = SampleSet.buildFromTable(table);
+    console.log("Test Sample: " + JSON.stringify(sample));
+    console.log("Branchs: " + JSON.stringify(ID3.decisionBrachs));
   },
 }
 
-function learn(table) {
-  console.log("Version: 1.0.5.0");
-  console.log("Release: input data by HTML table");
-//   console.log("entropy=" + getEntropy(testSample, "Play ball", null));
-//   Object.keys(testSample[0]).forEach(function(item, index){
-//     console.log("entropy for " + item + "=" + getGain(testSample, "Play ball", item, null));
-//   });
-//   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", null));
-//   console.log("getGain=" + getGain(testSample, "Play ball", "Humidity", [{"attr":"Outlook", "value":"Sunny"}]));
-//   console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Overcast"}]));
-//   console.log("getEntropy=" + getEntropy(testSample, "Play ball", [{"attr":"Outlook", "value":"Sunny"}, {"attr":"Humidity", "value":"High"}]));
-//   console.log("getDecisionAttr=" + getDecisionAttr(testSample, "Play ball", [{"attr":"Outlook", "value":"Rain"}]));
-  var sampleSet = SampleSet.buildFromTable(table);
-  ID3.genDecisionbranch(sampleSet, "Play ball");
-  console.log("Tree: " + JSON.stringify(ID3.decisionTree));
-}
+
