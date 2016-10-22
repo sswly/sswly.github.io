@@ -4,6 +4,10 @@
     <script src="vis.min.js"></script>
   </head>
   <body>
+    <table id="test_sample">
+      <tr><td>D8</td><td>Sunny</td><td>Mild</td><td>High</td><td>Weak</td><td>No</td></tr>
+    </table>
+    <hr>
     <div id="decision_tree" style="float:left;width:50%"></div>
     <div style="float:right;width:50%">
     <table id="sample_set">
@@ -25,7 +29,7 @@
     </table>
     </div>
     <script>
-      learn(document.getElementById('sample_set'));
+      ID3.learn(document.getElementById('sample_set'));
       var container = document.getElementById('decision_tree');
       var option = {
         layout: {
@@ -36,6 +40,7 @@
         },
       };
       var network = new vis.Network(container, ID3.decisionTree, option);
+      ID3.makeDecision(document.getElementById('test_sample'));
     </script>
   </body>
 </html>
