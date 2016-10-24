@@ -169,8 +169,6 @@ ID3 = {
     }
   },
   learn: function(table) {
-    console.log("Version: 1.0.5.2");
-    console.log("Release: input data by HTML table");
     var sampleSet = SampleSet.buildFromTable(table);
     ID3.genDecisionbranch(sampleSet, "Play ball");
 //     console.log("Tree: " + JSON.stringify(ID3.decisionTree));
@@ -196,5 +194,7 @@ ID3 = {
     return decision;
   },
 }
+console.log("Version: 1.1.0.0");
+console.log("Release: framework is ready");
 
 
