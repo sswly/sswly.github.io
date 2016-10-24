@@ -169,7 +169,7 @@ ID3 = {
     }
   },
   learn: function(table) {
-    console.log("Version: 1.0.5.0");
+    console.log("Version: 1.0.5.1");
     console.log("Release: input data by HTML table");
     var sampleSet = SampleSet.buildFromTable(table);
     ID3.genDecisionbranch(sampleSet, "Play ball");
@@ -178,6 +178,9 @@ ID3 = {
   makeDecision: function(attr, conditions) {
     var decision = "Unknown";
     ID3.decisionBrachs.forEach(function(branch, index){
+      if (decision != "Unknown") {
+        return;
+      }
       decision = branch[branch.length - 1]["value"];
       console.log("branch decision: " + decision);
       branch.forEach(function(item, index){
@@ -190,9 +193,6 @@ ID3 = {
 	  return;
 	}
       });
-      if (decision != "Unknown") {
-        return;
-      }
     });
     return decision;
   },
