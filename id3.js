@@ -175,12 +175,16 @@ ID3 = {
     ID3.genDecisionbranch(sampleSet, "Play ball");
 //     console.log("Tree: " + JSON.stringify(ID3.decisionTree));
   },
-  makeDecision: function(conditions) {
+  makeDecision: function(attr, conditions) {
     var decision = "Unknown";
     ID3.decisionBrachs.forEach(function(branch, index){
       decision = branch[branch.length - 1]["value"];
       console.log("branch decision: " + decision);
       branch.forEach(function(item, index){
+        if (item["attr"] == attr) {
+          decision = item["value"];
+	  return;
+	}
         if (item["value"] != conditions[item["attr"]]) {
           decision = "Unknown";
 	  return;
