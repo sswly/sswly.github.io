@@ -185,7 +185,6 @@ ID3 = {
       console.log("branch decision: " + decision);
       branch.forEach(function(item, index){
         if (item["attr"] == attr) {
-          decision = item["value"];
 	  return;
 	}
         if (item["value"] != conditions[item["attr"]]) {
