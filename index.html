@@ -56,7 +56,7 @@
         conditions['Outlook'] = document.getElementById('Outlook').value;
         conditions['Humidity'] = document.getElementById('Humidity').value;
         conditions['Wind'] = document.getElementById('Wind').value;
-        document.getElementById('sample_set').innerHTML = ID3.makeDecision('Play ball', conditions);
+        document.getElementById('result').innerHTML = ID3.makeDecision('Play ball', conditions);
       }
       ID3.learn(document.getElementById('sample_set'));
       var container = document.getElementById('decision_tree');
