@@ -19,7 +19,7 @@
       <option>Weak</option>
       <option>Strong</option>
     </select>
-    <button>
+    <button autofocus onclick="myFunction()">Test</button>
     <hr><br>
     <h2>Learning</h2>
     <div id="decision_tree" style="float:left;width:50%"></div>
@@ -43,6 +43,9 @@
     </table>
     </div>
     <script>
+      function test() {
+        console.log(document.getElementById('Outlook').value);
+      }
       ID3.learn(document.getElementById('sample_set'));
       var container = document.getElementById('decision_tree');
       var option = {
