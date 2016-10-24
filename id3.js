@@ -175,10 +175,22 @@ ID3 = {
     ID3.genDecisionbranch(sampleSet, "Play ball");
 //     console.log("Tree: " + JSON.stringify(ID3.decisionTree));
   },
-  makeDecision: function(table) {
-    var sample = SampleSet.buildFromTable(table);
-    console.log("Test Sample: " + JSON.stringify(sample));
-    console.log("Branchs: " + JSON.stringify(ID3.decisionBrachs));
+  makeDecision: function(conditions) {
+    var decision = "Unknown";
+    ID3.decisionBrachs.forEach(function(branch, index){
+      decision = branch[branch.length - 1]["value"];
+      console.log("branch decision: " + decision);
+      branch.forEach(function(item, index){
+        if (item["value"] != conditions[item["attr"]]) {
+          decision = "Unknown";
+	  return;
+	}
+      });
+      if (decision != "Unknown") {
+        return;
+      }
+    });
+    return decision;
   },
 }
 
