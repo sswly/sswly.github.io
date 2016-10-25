@@ -26,6 +26,16 @@
       </table>
     </div>
     <script>
+      var gAttrs = [];
+      var gAttr;
+      function test() {
+        var conditions = {};
+        gAttrs.forEach(function(item, index){
+          conditions[item] = document.getElementById(item).value;
+        });
+        document.getElementById('result').innerHTML = ID3.makeDecision(gAttr, conditions);
+      }
+      
       function run() {
         var testTableContent = "<tr>";
         var tableContent = "<tr><th>ID</th>";
@@ -55,16 +65,17 @@
         });
         testSelection.splice(testSelection.length - 1, 1);
         
-        var attrs = Object.keys(data[0]);
-        attrs.splice(attrs.length - 1, 1);
+        gAttrs = Object.keys(data[0]);
+        gAttr= gAttrs.splice(gAttrs.length - 1, 1);
         var id = 0;
         testTableContent += "<tr>";
         testSelection.forEach(function(item, index){
-          testTableContent += "<td><select id='" + attrs[id] + "'>";
+          testTableContent += "<td><select id='" + gAttrs[id] + "'>";
           item.split(",").forEach(function(option, index){
             testTableContent += "<option>" + option + "</option>";
           });
           testTableContent += "</select></td>";
+          id++;
         });
         testTableContent += "<td><span id='result'></span></td><td><button autofocus onclick='test()'>Test</button></td></tr>";
         console.log(JSON.stringify(testSelection));
