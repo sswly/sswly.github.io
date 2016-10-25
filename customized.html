@@ -20,8 +20,13 @@
     </div>
     <script>
       function run() {
-        console.log(document.getElementById("data_type").value);
-        console.log(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
+        var tableContent = "<tr>";
+        var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
+        Object.keys(data).forEach(function(item, index){  
+          tableContent += "<th>" + item + "</th>";
+        });
+        tableContent += "</tr>";
+        document.getElementById("sample_set").innerHTML = tableContent;
       }
     </script>
   </body>
