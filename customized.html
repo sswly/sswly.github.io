@@ -53,7 +53,7 @@
           });
           tableContent += "</tr>";
         });
-        testSelection.remove(testSelection.length - 1);
+        testSelection.splice(testSelection.length - 1, 1);
         
         testTableContent += "<tr>";
         testSelection.forEach(function(item, index){
