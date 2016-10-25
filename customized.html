@@ -6,13 +6,16 @@
       <option>JSON</option>
       <option>CSV</option>
     </select>
+    <button onClick="run()"></button>
     <br>
     <textarea  id="data" rows="3" cols="20">
       
     </textarea>
     <script>
-      console.log(document.getElementById("data_type").value);
-      console.log(document.getElementById("data").value)
+      function run() {
+        console.log(document.getElementById("data_type").value);
+        console.log(document.getElementById("data").value);
+      }
     </script>
   </body>
 </html
