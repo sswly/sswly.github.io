@@ -2,12 +2,17 @@
   <head>
   </head>
   <body>
-    <select id='data_type'>
+    <select id="data_type">
       <option>JSON</option>
       <option>CSV</option>
     </select>
-    <textarea  id='data'rows="3" cols="20">
+    <br>
+    <textarea  id="data" rows="3" cols="20">
       
     </textarea>
+    <script>
+      console.log(document.getElementById("data_type").value);
+      console.log(document.getElementById("data").value)
+    </script>
   </body>
 </html
