@@ -27,7 +27,7 @@
     </div>
     <script>
       function run() {
-        var testTableContent = "<tr><th>ID</th>";
+        var testTableContent = "<tr>";
         var tableContent = "<tr><th>ID</th>";
         var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
         console.log(JSON.stringify(data));
@@ -53,6 +53,7 @@
           });
           tableContent += "</tr>";
         });
+        testSelection.remove(testSelection.length - 1);
         
         testTableContent += "<tr>";
         testSelection.forEach(function(item, index){
