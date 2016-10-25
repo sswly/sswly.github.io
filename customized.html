@@ -22,6 +22,7 @@
       function run() {
         var tableContent = "<tr>";
         var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
+        console.log(JSON.stringify(data));
         Object.keys(data).forEach(function(item, index){  
           tableContent += "<th>" + item + "</th>";
         });
