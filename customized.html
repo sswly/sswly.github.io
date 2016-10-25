@@ -55,9 +55,12 @@
         });
         testSelection.splice(testSelection.length - 1, 1);
         
+        var attrs = Object.keys(data[0]);
+        attrs.splice(attrs.length - 1, 1);
+        var id = 0;
         testTableContent += "<tr>";
         testSelection.forEach(function(item, index){
-          testTableContent += "<td><select>";
+          testTableContent += "<td><select id='" + attrs[id] + "'>";
           item.split(",").forEach(function(option, index){
             testTableContent += "<option>" + option + "</option>";
           });
