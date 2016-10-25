@@ -15,7 +15,7 @@
     </textarea>
     <br>
     <h2>Learning</h2>
-    <div id="decision_tree" style="float:left;width:50%"></div>
+    <div id="customized_decision_tree" style="float:left;width:50%"></div>
     <div style="float:right;width:50%">
       <table id="sample_set">
       </table>
@@ -38,7 +38,7 @@
         });
         document.getElementById("sample_set").innerHTML = tableContent;
         ID3.learn(document.getElementById('sample_set'));
-        var container = document.getElementById('decision_tree');
+        var container = document.getElementById('customized_decision_tree');
         var option = {
           layout: {
               hierarchical: {
