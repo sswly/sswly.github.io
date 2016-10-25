@@ -38,13 +38,19 @@
         testTableContent += "</tr>";
         tableContent += "</tr>";
         
-        data.forEach(function(row, index){  
+        var testSelection = [];
+        data.forEach(function(row, index){
+          var id = 0;
           tableContent += "<tr><td></td>";
           Object.keys(row).forEach(function(cell, index){  
             tableContent += "<td>" + row[cell] + "</td>";
+            testSelection[id] += row[cell] + ",";
+            id++;
           });
           tableContent += "</tr>";
         });
+        console.log(JSON.stringify(testSelection));
+        
         document.getElementById("test_table").innerHTML = testTableContent;
         document.getElementById("sample_set").innerHTML = tableContent;
         ID3.learn(document.getElementById('sample_set'));
