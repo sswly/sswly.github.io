@@ -53,6 +53,16 @@
           });
           tableContent += "</tr>";
         });
+        
+        testTableContent += "<tr>";
+        testSelection.forEach(function(item, index){
+          testTableContent += "<td><select>";
+          item.split(",").forEach(function(option, index){
+            testTableContent += "<option>" + option + "</option>";
+          });
+          testTableContent += "</select></td>";
+        });
+        testTableContent += "</tr>";
         console.log(JSON.stringify(testSelection));
         
         document.getElementById("test_table").innerHTML = testTableContent;
