@@ -30,7 +30,7 @@
         data.forEach(function(row, index){  
           tableContent += "<tr>";
           Object.keys(row).forEach(function(cell, index){  
-            tableContent += "<td>" + cell + "</td>";
+            tableContent += "<td>" + row[cell] + "</td>";
           });
           tableContent += "</tr>";
         });
