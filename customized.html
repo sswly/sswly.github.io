@@ -11,7 +11,7 @@
     </select>
     <button onClick="run()">Run</button>
     <br>
-    <textarea  id="data" rows="3" cols="20">
+    <textarea  id="data" rows="3" cols="80">
       
     </textarea>
     <hr><br>
@@ -35,7 +35,7 @@
           testTableContent += "<th>" + item + "</th>";
           tableContent += "<th>" + item + "</th>";
         });
-        testTableContent += "</tr>";
+        testTableContent += "<th></th></tr>";
         tableContent += "</tr>";
         
         var testSelection = [];
@@ -63,7 +63,7 @@
           });
           testTableContent += "</select></td>";
         });
-        testTableContent += "</tr>";
+        testTableContent += "<td><span id="result"></span></td><td><button autofocus onclick="test()">Test</button></td></tr>";
         console.log(JSON.stringify(testSelection));
         
         document.getElementById("test_table").innerHTML = testTableContent;
