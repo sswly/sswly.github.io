@@ -27,6 +27,13 @@
           tableContent += "<th>" + item + "</th>";
         });
         tableContent += "</tr>";
+        data.forEach(function(row, index){  
+          tableContent += "<tr>";
+          Object.keys(row).forEach(function(cell, index){  
+            tableContent += "<td>" + cell + "</td>";
+          });
+          tableContent += "</tr>";
+        });
         document.getElementById("sample_set").innerHTML = tableContent;
       }
     </script>
