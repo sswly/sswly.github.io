@@ -44,7 +44,11 @@
           tableContent += "<tr><td></td>";
           Object.keys(row).forEach(function(cell, index){  
             tableContent += "<td>" + row[cell] + "</td>";
-            testSelection[id] += row[cell] + ",";
+            if (testSelection[id] == undefined) {
+              testSelection[id] = row[cell];
+            } else if (testSelection[id].indexOf(row[cell]) < 0) {
+              testSelection[id] += "," + row[cell];
+            }
             id++;
           });
           tableContent += "</tr>";
