@@ -14,7 +14,7 @@
     <script>
       function run() {
         console.log(document.getElementById("data_type").value);
-        console.log(document.getElementById("data").value);
+        console.log(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
       }
     </script>
   </body>
