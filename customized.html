@@ -22,7 +22,7 @@
     </div>
     <script>
       function run() {
-        var tableContent = "<tr>";
+        var tableContent = "<tr><th>ID</th>";
         var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
         console.log(JSON.stringify(data));
         Object.keys(data[0]).forEach(function(item, index){  
@@ -30,7 +30,7 @@
         });
         tableContent += "</tr>";
         data.forEach(function(row, index){  
-          tableContent += "<tr>";
+          tableContent += "<tr><td></td>";
           Object.keys(row).forEach(function(cell, index){  
             tableContent += "<td>" + row[cell] + "</td>";
           });
