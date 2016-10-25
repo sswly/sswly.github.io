@@ -1,5 +1,7 @@
 <html>
   <head>
+    <script src="id3.js"></script>
+    <script src="vis.min.js"></script>
   </head>
   <body>
     <select id="data_type">
@@ -35,6 +37,17 @@
           tableContent += "</tr>";
         });
         document.getElementById("sample_set").innerHTML = tableContent;
+        ID3.learn(document.getElementById('sample_set'));
+        var container = document.getElementById('decision_tree');
+        var option = {
+          layout: {
+              hierarchical: {
+                  direction: "UD",
+                  sortMethod: "directed"
+              }
+          },
+        };
+        var network = new vis.Network(container, ID3.decisionTree, option);
       }
     </script>
   </body>
