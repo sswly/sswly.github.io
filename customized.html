@@ -36,19 +36,25 @@
         document.getElementById('result').innerHTML = ID3.makeDecision(gAttr, conditions);
       }
       
-      function run() {
-        var testTableContent = "<tr>";
-        var tableContent = "<tr>";
-        var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
-        console.log(JSON.stringify(data));
-        var tableHead = [];
+      function getAllAttrs(data) {
+        var attrs = [];
         data.forEach(function(item, index){
           Object.keys(item).forEach(function(attr, index){  
-            if (tableHead.indexOf(attr) == -1) {
-              tableHead.push(attr);
+            if (attrs.indexOf(attr) == -1) {
+              attrs.push(attr);
             }
           });
         });
+        return attrs;
+      }
+      
+      function run() {
+        var testTableContent = "<tr><th>Result</th>";
+        var tableContent = "<tr>";
+        var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
+        console.log(JSON.stringify(data));
+        var tableHead = getAllAttrs(data);
+        
         tableHead.forEach(function(item, index){
           testTableContent += "<th>" + item + "</th>";
           tableContent += "<th>" + item + "</th>";
