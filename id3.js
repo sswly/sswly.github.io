@@ -111,7 +111,7 @@ ID3 = {
       }
       gain -= (attrData["data"][item] / attrData["total"]) * ID3.getEntropy(sampleSet, attr, newConstraint);
     });
-    console.log("Gain for " + gainAttr + " is : " + decision["attr"]);
+    console.log("Gain for " + gainAttr + " is : " + gain);
     return gain;
   },
   
