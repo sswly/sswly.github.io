@@ -117,6 +117,7 @@ ID3 = {
   
   getDecisionNode: function(sample, attr, constraint) {
     if (ID3.getEntropy(sample, attr, constraint) == 0) {
+      console.log("Decision node is null for the entropy is 0 for " + attr);
       return null;
     }
     var decision = {"gain":0.0};
