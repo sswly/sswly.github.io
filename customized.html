@@ -48,16 +48,27 @@
         return attrs;
       }
       
+      function genTablehead(cols) {
+        var tablehead = "";
+        cols.forEach(function(item, index){
+          tablehead += "<th>" + item + "</th>";
+        });
+        return tablehead;
+      }
+      
       function run() {
-        var tableContent = "<tr>";
         var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
         console.log(JSON.stringify(data));
         var tableHead = getAllAttrs(data);
         
-        tableHead.forEach(function(item, index){
-          tableContent += "<th>" + item + "</th>";
-        });
+        var tableContent = "<tr>";
+        tableContent += genTablehead(tableHead);
         tableContent += "</tr>";
+        
+        gAttr= tableHead.splice(0, 2);
+        var testTableContent = "<tr><th>Result</th>";
+        testTableContent += genTablehead(gAttr);
+        testTableContent += "</tr>";
         
         var testSelection = [];
         data.forEach(function(row, index){
@@ -76,14 +87,9 @@
         });
         testSelection.splice(testSelection.length - 1, 1);
         
-        gAttrs = tableHead;
-        gAttr= gAttrs.splice(0, 2);
         
-        var testTableContent = "<tr><th>Result</th>";
-        gAttr.forEach(function(item, index){
-          testTableContent += "<th>" + item + "</th>";
-        });
-        testTableContent += "</tr>";
+        
+        
         
         var id = 0;
         testTableContent += "<tr>";
