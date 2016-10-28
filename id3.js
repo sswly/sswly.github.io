@@ -167,9 +167,9 @@ ID3 = {
 	var leftId = from + "-" + constraint[constraint.length - 1]["value"] + "-" +leaf;
 	ID3.decisionTree.nodes.push({id: leftId, label: leaf, shape: "triangleDown"});
 	ID3.decisionTree.edges.push({from: from, to: leftId, label: constraint[constraint.length - 1]["value"]});
+      	console.log("Decision branch: " + JSON.stringify(constraint) + "=>" + leaf);
+      	ID3.decisionBrachs.push(constraint.concat({"attr":attr, "value":leaf}));
       }
-      console.log("Decision branch: " + JSON.stringify(constraint) + "=>" + leaf);
-      ID3.decisionBrachs.push(constraint.concat({"attr":attr, "value":leaf}));
     }
   },
   learn: function(table, attr) {
