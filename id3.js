@@ -130,7 +130,7 @@ ID3 = {
         decision["attr"] = item;
       }
     });
-
+    console.log("Decision node: " + decision["attr"]);
     return decision["attr"];
   },
 
