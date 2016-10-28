@@ -44,7 +44,7 @@
         var tableHead = [];
         data.forEach(function(item, index){
           Object.keys(item).forEach(function(attr, index){  
-            if (tableHead.indexOf() == -1) {
+            if (tableHead.indexOf(attr) == -1) {
               tableHead.push(attr);
             }
           });
