@@ -41,7 +41,15 @@
         var tableContent = "<tr><th>ID</th>";
         var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
         console.log(JSON.stringify(data));
-        Object.keys(data[0]).forEach(function(item, index){  
+        var tableHead = [];
+        data.forEach(function(item, index){
+          Object.keys(item).forEach(function(attr, index){  
+            if (tableHead.indexOf() == -1) {
+              tableHead.push(attr);
+            }
+          });
+        });
+        tableHead.forEach(function(item, index){
           testTableContent += "<th>" + item + "</th>";
           tableContent += "<th>" + item + "</th>";
         });
