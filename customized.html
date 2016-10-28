@@ -60,7 +60,7 @@
         data.forEach(function(row, index){
           var id = 0;
           tableContent += "<tr>";
-          Object.keys(row).forEach(function(cell, index){  
+          tableHead.forEach(function(cell, index){  
             tableContent += "<td>" + row[cell] + "</td>";
             if (testSelection[id] == undefined) {
               testSelection[id] = row[cell];
