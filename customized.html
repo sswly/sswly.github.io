@@ -104,7 +104,7 @@
         
         document.getElementById("test_table").innerHTML = testTableContent;
         document.getElementById("sample_set").innerHTML = tableContent;
-        ID3.learn(document.getElementById('sample_set'));
+        ID3.learn(document.getElementById('sample_set'), "Result");
         var container = document.getElementById('customized_decision_tree');
         var option = {
           layout: {
