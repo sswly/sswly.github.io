@@ -65,7 +65,8 @@
         tableContent += genTablehead(tableHead);
         tableContent += "</tr>";
         
-        gAttr= tableHead.splice(0, 2);
+        gAttr = tableHead.slice();
+        gAttr.splice(0, 2);
         var testTableContent = "<tr><th>Result</th>";
         testTableContent += genTablehead(gAttr);
         testTableContent += "</tr>";
