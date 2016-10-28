@@ -163,6 +163,7 @@ ID3 = {
       attrData = SampleSet.count(sample, attr, constraint);
       var leaf = Object.keys(attrData["data"])[0];
       ID3.decisionTree.nodes.push({id: from + "-" + leaf, label: leaf, shape: "triangleDown"});
+      if (constraint != null)
       ID3.decisionTree.edges.push({from: from, to: from + "-" + leaf, label: constraint[constraint.length - 1]["value"]});
       console.log("Decision branch: " + JSON.stringify(constraint) + "=>" + leaf);
       ID3.decisionBrachs.push(constraint.concat({"attr":attr, "value":leaf}));
