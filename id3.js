@@ -168,9 +168,9 @@ ID3 = {
       ID3.decisionBrachs.push(constraint.concat({"attr":attr, "value":leaf}));
     }
   },
-  learn: function(table) {
+  learn: function(table, attr) {
     var sampleSet = SampleSet.buildFromTable(table);
-    ID3.genDecisionbranch(sampleSet, "Play ball");
+    ID3.genDecisionbranch(sampleSet, attr);
 //     console.log("Tree: " + JSON.stringify(ID3.decisionTree));
   },
   makeDecision: function(attr, conditions) {
