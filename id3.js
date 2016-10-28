@@ -164,7 +164,7 @@ ID3 = {
       var leaf = Object.keys(attrData["data"])[0];
       if (constraint != null) {
 	ID3.decisionTree.nodes.push({id: from + "-" + constraint[constraint.length - 1]["value"] + "-" +leaf, label: leaf, shape: "triangleDown"});
-	ID3.decisionTree.edges.push({from: from, to: from + "-" + leaf, label: constraint[constraint.length - 1]["value"]});
+	ID3.decisionTree.edges.push({from: from, to: from + "-" + constraint[constraint.length - 1]["value"] + "-" +leaf, label: constraint[constraint.length - 1]["value"]});
       }
       console.log("Decision branch: " + JSON.stringify(constraint) + "=>" + leaf);
       ID3.decisionBrachs.push(constraint.concat({"attr":attr, "value":leaf}));
