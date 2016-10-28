@@ -38,7 +38,7 @@
       
       function run() {
         var testTableContent = "<tr>";
-        var tableContent = "<tr><th>ID</th>";
+        var tableContent = "<tr>";
         var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
         console.log(JSON.stringify(data));
         var tableHead = [];
@@ -59,7 +59,7 @@
         var testSelection = [];
         data.forEach(function(row, index){
           var id = 0;
-          tableContent += "<tr><td></td>";
+          tableContent += "<tr>";
           Object.keys(row).forEach(function(cell, index){  
             tableContent += "<td>" + row[cell] + "</td>";
             if (testSelection[id] == undefined) {
