@@ -74,9 +74,10 @@
         testSelection.splice(testSelection.length - 1, 1);
         
         gAttrs = Object.keys(data[0]);
-        gAttr= gAttrs.splice(gAttrs.length - 1, 1);
+        gAttr= gAttrs.splice(0, 1);
         var id = 0;
         testTableContent += "<tr>";
+        testTableContent += "<td><span id='result'></span></td><td><button autofocus onclick='test()'>Test</button></td></tr>";
         testSelection.forEach(function(item, index){
           testTableContent += "<td><select id='" + gAttrs[id] + "'>";
           item.split(",").forEach(function(option, index){
@@ -85,7 +86,6 @@
           testTableContent += "</select></td>";
           id++;
         });
-        testTableContent += "<td><span id='result'></span></td><td><button autofocus onclick='test()'>Test</button></td></tr>";
         console.log(JSON.stringify(testSelection));
         
         document.getElementById("test_table").innerHTML = testTableContent;
