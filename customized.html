@@ -49,17 +49,14 @@
       }
       
       function run() {
-        var testTableContent = "<tr><th>Result</th>";
         var tableContent = "<tr>";
         var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
         console.log(JSON.stringify(data));
         var tableHead = getAllAttrs(data);
         
         tableHead.forEach(function(item, index){
-          testTableContent += "<th>" + item + "</th>";
           tableContent += "<th>" + item + "</th>";
         });
-        testTableContent += "</tr>";
         tableContent += "</tr>";
         
         var testSelection = [];
@@ -81,6 +78,13 @@
         
         gAttrs = tableHead;
         gAttr= gAttrs.splice(0, 2);
+        
+        var testTableContent = "<tr><th>Result</th>";
+        gAttr.forEach(function(item, index){
+          testTableContent += "<th>" + item + "</th>";
+        });
+        testTableContent += "</tr>";
+        
         var id = 0;
         testTableContent += "<tr>";
         testTableContent += "<td><span id='result'></span></td>";
