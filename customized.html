@@ -58,42 +58,35 @@
       function run() {
         var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
         console.log(JSON.stringify(data));
-        var tableHead = getAllAttrs(data);
+        var tableHead = HtmlTable.getTableHead(data);
+        tableHead.splice(0, 1);
         
-        var tableContent = "<tr>";
-        tableContent += genTablehead(tableHead);
-        tableContent += "</tr>";
-        
-        gAttr = tableHead.slice();
-        gAttr.splice(0, 2);
-        var testTableContent = "<tr><th>Result</th>";
-        testTableContent += genTablehead(gAttr);
+        var testTableContent = "<tr>";
+        testTableContent += genTablehead(tableHead);
         testTableContent += "</tr>";
         
         var testSelection = [];
         data.forEach(function(row, index){
           var id = 0;
-          tableContent += "<tr>";
           tableHead.forEach(function(cell, index){  
-            tableContent += "<td>" + row[cell] + "</td>";
             if (testSelection[id] == undefined) {
-              testSelection[id] = "" + row[cell];
-            } else if (testSelection[id].indexOf("" + row[cell]) < 0) {
-              testSelection[id] += "," + row[cell];
+              testSelection[id] = [row[cell]];
+            } else if (testSelection[id].indexOf(row[cell]) < 0) {
+              testSelection[id].push(row[cell]);
             }
             id++;
           });
-          tableContent += "</tr>";
         });
-        testSelection.splice(0, 2);
+        testSelection.splice(0, 1);
+        testSelection.splice(-1, 1);
         
         var id = 0;
         testTableContent += "<tr>";
-        testTableContent += "<td><span id='result'></span></td>";
         testSelection.forEach(function(item, index){
-          testTableContent += "<td>" + HtmlSelect.generate(gAttrs[id], item.split(",")) + "</td>";
+          testTableContent += "<td>" + HtmlSelect.generate(tableHead[id], item) + "</td>";
           id++;
         });
+        testTableContent += "<td><span id='result'></span></td>";
         testTableContent += "<td><button autofocus onclick='test()'>Test</button></td></tr>";
         console.log(JSON.stringify(testSelection));
         
