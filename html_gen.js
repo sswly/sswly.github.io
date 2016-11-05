@@ -8,6 +8,10 @@ HtmlTable = {
     HtmlTable.tableHead.splice(-1, 0, head);
   },
   
+  clearTableHead: function() {
+    HtmlTable.tableHead = [];
+  },
+  
   generate: function(id, data) {
     var htmlTable = "<table id='" + id + "'>";
     //head
