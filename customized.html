@@ -2,6 +2,7 @@
   <head>
     <script src="id3.js"></script>
     <script src="vis.min.js"></script>
+    <script src="html_gen.js"></script>
   </head>
   <body>
     <a href="https://github.com/sswly/sswly.github.io"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
@@ -21,9 +22,7 @@
     <hr><br>
     <h2>Learning</h2>
     <div id="customized_decision_tree" style="float:left;width:50%"></div>
-    <div style="float:right;width:50%">
-      <table id="sample_set" border="1">
-      </table>
+    <div style="float:right;width:50%" id="sample_set">
     </div>
     <script>
       var gAttrs = [];
@@ -103,7 +102,7 @@
         console.log(JSON.stringify(testSelection));
         
         document.getElementById("test_table").innerHTML = testTableContent;
-        document.getElementById("sample_set").innerHTML = tableContent;
+        document.getElementById("sample_set").innerHTML = HtmlTable.generate(data);
         ID3.learn(document.getElementById('sample_set'), "Result");
         var container = document.getElementById('customized_decision_tree');
         var option = {
