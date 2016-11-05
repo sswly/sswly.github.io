@@ -17,15 +17,20 @@ HtmlTable = {
     return tableHead;
   },
   
-  generate: function(data, id) {
+  genHtmlHead: function(tableHead) {
+    var html += "<tr>";
+    tableHead.forEach(function(item, index){
+      html += "<th>" + item + "</th>";
+    });
+    html += "</tr>";
+    return html;
+  },
+  
+  genHtml: function(data, id) {
     var tableHead = HtmlTable.getTableHead(data);
     var htmlTable = "<table id='" + id + "'>";
     //head
-    htmlTable += "<tr>";
-    tableHead.forEach(function(item, index){
-      htmlTable += "<th>" + item + "</th>";
-    });
-    htmlTable += "</tr>";
+    htmlTable += HtmlTable.genHtmlHead(tableHead);
     
     //body
     data.forEach(function(row, index){
@@ -41,7 +46,7 @@ HtmlTable = {
 }
 
 HtmlSelect = {
-  generate: function(id, options) {
+  genHtml: function(id, options) {
     var htmlSelect = "<select id='" + id + "'>";
     options.forEach(function(item, index){
       htmlSelect += "<option>" + item + "</option>";
