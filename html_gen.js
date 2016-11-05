@@ -15,7 +15,7 @@ HtmlTable = {
       isFirstData = false;
     });
     
-    var htmlTable = "<table id='" + id + "'>";
+    var htmlTable = "<table>";
     //head
     htmlTable += "<tr>";
     tableHead.forEach(function(item, index){
