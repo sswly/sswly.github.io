@@ -70,9 +70,7 @@
         var tableHead = HtmlTable.getTableHead(data);
         tableHead.splice(0, 1);
             
-        var testTableContent = "<tr>";
-        testTableContent += genTablehead(tableHead);
-        testTableContent += "</tr>";
+        var testTableContent = HtmlTable.genHtmlHead(tableHead);
         
         var resultAttr = tableHead.splice(-1, 1);
         var testSelection = [];
@@ -91,7 +89,7 @@
         var id = 0;
         testTableContent += "<tr>";
         testSelection.forEach(function(item, index){
-          testTableContent += "<td>" + HtmlSelect.generate(tableHead[id], item) + "</td>";
+          testTableContent += "<td>" + HtmlSelect.genHtml(tableHead[id], item) + "</td>";
           id++;
         });
         testTableContent += "<td><span id='result'></span></td>";
@@ -99,7 +97,7 @@
         console.log(JSON.stringify(testSelection));
         
         document.getElementById("test_table").innerHTML = testTableContent;
-        document.getElementById("sample_set_div").innerHTML = HtmlTable.generate(data, "sample_set");
+        document.getElementById("sample_set_div").innerHTML = HtmlTable.genHtml(data, "sample_set");
         ID3.learn(document.getElementById("sample_set"), resultAttr);
         var container = document.getElementById('customized_decision_tree');
         var option = {
