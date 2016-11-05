@@ -59,7 +59,7 @@
         conditions['Wind'] = document.getElementById('Wind').value;
         document.getElementById('result').innerHTML = ID3.makeDecision('Play ball', conditions);
       }
-      ID3.learn(document.getElementById('sample_set'));
+      ID3.learn(document.getElementById('sample_set'), "Play ball");
       var container = document.getElementById('decision_tree');
       var option = {
         layout: {
