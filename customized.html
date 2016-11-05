@@ -77,9 +77,9 @@
           tableContent += "<tr>";
           tableHead.forEach(function(cell, index){  
             tableContent += "<td>" + row[cell] + "</td>";
-            if (testSelection[id] == undefined || testSelection[id] == null) {
+            if (testSelection[id] == undefined) {
               testSelection[id] = row[cell];
-            } else if (testSelection[id].indexOf(row[cell]) < 0) {
+            } else if (testSelection[id].indexOf("" + row[cell]) < 0) {
               testSelection[id] += "," + row[cell];
             }
             id++;
