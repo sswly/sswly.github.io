@@ -1,5 +1,5 @@
 HtmlTable = {
-  generate: function(data) {
+  getTableHead: function(data) {
     var tableHead = [];
     var isFirstData = true;
     data.forEach(function(item, index){
@@ -14,7 +14,11 @@ HtmlTable = {
       });
       isFirstData = false;
     });
-    
+    return tableHead;
+  },
+  
+  generate: function(data) {
+    var tableHead = HtmlTable.getTableHead(data);
     var htmlTable = "<table>";
     //head
     htmlTable += "<tr>";
