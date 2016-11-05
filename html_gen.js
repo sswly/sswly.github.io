@@ -35,3 +35,14 @@ HtmlTable = {
     return htmlTable;
   },
 }
+
+HtmlSelect = {
+  generate: function(id, options) {
+    var htmlSelect = "<select id='" + id + "'>";
+    options.forEach(function(item, index){
+      htmlSelect += "<option>" + item + "</option>";
+    });
+    htmlSelect; += "</select>";
+    return htmlSelect;
+  },
+}
