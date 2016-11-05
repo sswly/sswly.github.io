@@ -1,5 +1,5 @@
 HtmlTable = {
-  generate: function(id, data) {
+  generate: function(data) {
     var tableHead = [];
     var isFirstData = true;
     data.forEach(function(item, index){
