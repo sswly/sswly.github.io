@@ -69,11 +69,12 @@
         console.log(JSON.stringify(data));
         var tableHead = HtmlTable.getTableHead(data);
         tableHead.splice(0, 1);
-        
+            
         var testTableContent = "<tr>";
         testTableContent += genTablehead(tableHead);
         testTableContent += "</tr>";
         
+        var resultAttr = tableHead.splice(-1, 1);
         var testSelection = [];
         data.forEach(function(row, index){
           var id = 0;
@@ -86,7 +87,6 @@
             id++;
           });
         });
-        testSelection.splice(-1, 1);
         
         var id = 0;
         testTableContent += "<tr>";
@@ -100,7 +100,7 @@
         
         document.getElementById("test_table").innerHTML = testTableContent;
         document.getElementById("sample_set").innerHTML = HtmlTable.generate(data);
-        ID3.learn(document.getElementById('sample_set'), "Result");
+        ID3.learn(ocument.getElementById("sample_set").innerHTML, resultAttr);
         var container = document.getElementById('customized_decision_tree');
         var option = {
           layout: {
