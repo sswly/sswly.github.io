@@ -100,7 +100,7 @@
         
         document.getElementById("test_table").innerHTML = testTableContent;
         document.getElementById("sample_set").innerHTML = HtmlTable.generate(data);
-        ID3.learn(ocument.getElementById("sample_set").innerHTML, resultAttr);
+        ID3.learn(document.getElementById("sample_set").innerHTML, resultAttr);
         var container = document.getElementById('customized_decision_tree');
         var option = {
           layout: {
