@@ -91,11 +91,7 @@
         testTableContent += "<tr>";
         testTableContent += "<td><span id='result'></span></td>";
         testSelection.forEach(function(item, index){
-          testTableContent += "<td><select id='" + gAttrs[id] + "'>";
-          item.split(",").forEach(function(option, index){
-            testTableContent += "<option>" + option + "</option>";
-          });
-          testTableContent += "</select></td>";
+          testTableContent += "<td>" + HtmlSelect.generate(gAttrs[id], item.split(",")) + "</td>";
           id++;
         });
         testTableContent += "<td><button autofocus onclick='test()'>Test</button></td></tr>";
