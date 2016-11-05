@@ -42,7 +42,7 @@ HtmlSelect = {
     options.forEach(function(item, index){
       htmlSelect += "<option>" + item + "</option>";
     });
-    htmlSelect; += "</select>";
+    htmlSelect += "</select>";
     return htmlSelect;
   },
 }
