@@ -17,9 +17,9 @@ HtmlTable = {
     return tableHead;
   },
   
-  generate: function(data) {
+  generate: function(data, id) {
     var tableHead = HtmlTable.getTableHead(data);
-    var htmlTable = "<table>";
+    var htmlTable = "<table id='" + id + "'>";
     //head
     htmlTable += "<tr>";
     tableHead.forEach(function(item, index){
