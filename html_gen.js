@@ -18,7 +18,7 @@ HtmlTable = {
   },
   
   genHtmlHead: function(tableHead) {
-    var html += "<tr>";
+    var html = "<tr>";
     tableHead.forEach(function(item, index){
       html += "<th>" + item + "</th>";
     });
