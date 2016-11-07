@@ -34,14 +34,14 @@
     <div style="float:right;width:50%" id="sample_set_div">
     </div>
     <script>
-      var gAttrs = [];
-      var gAttr;
+      var conditionAttrs = [];
+      var resultAttr;
       function test() {
         var conditions = {};
-        gAttrs.forEach(function(item, index){
+        conditionAttrs.forEach(function(item, index){
           conditions[item] = document.getElementById(item).value;
         });
-        document.getElementById('result').innerHTML = ID3.makeDecision(gAttr, conditions);
+        document.getElementById(resultAttr).innerHTML = ID3.makeDecision(resultAttr, conditions);
       }
       
       function getAllAttrs(data) {
@@ -67,16 +67,16 @@
       function run() {
         var data = JSON.parse(document.getElementById("data").value.replace(/(^\s*)|(\s*$)/g,""));
         console.log(JSON.stringify(data));
-        var tableHead = HtmlTable.getTableHead(data);
-        tableHead.splice(0, 1);
+        conditionAttrs = HtmlTable.getTableHead(data);
+        conditionAttrs.splice(0, 1);
             
-        var testTableContent = HtmlTable.genHtmlHead(tableHead);
+        var testTableContent = HtmlTable.genHtmlHead(conditionAttrs);
         
-        var resultAttr = tableHead.splice(-1, 1);
+        resultAttr = conditionAttrs.splice(-1, 1);
         var testSelection = [];
         data.forEach(function(row, index){
           var id = 0;
-          tableHead.forEach(function(cell, index){  
+          conditionAttrs.forEach(function(cell, index){  
             if (testSelection[id] == undefined) {
               testSelection[id] = [row[cell]];
             } else if (testSelection[id].indexOf(row[cell]) < 0) {
@@ -89,7 +89,7 @@
         var id = 0;
         testTableContent += "<tr>";
         testSelection.forEach(function(item, index){
-          testTableContent += "<td>" + HtmlSelect.genHtml(tableHead[id], item) + "</td>";
+          testTableContent += "<td>" + HtmlSelect.genHtml(conditionAttrs[id], item) + "</td>";
           id++;
         });
         testTableContent += "<td><span id='result'></span></td>";
