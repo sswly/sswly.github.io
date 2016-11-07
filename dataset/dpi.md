@@ -14,7 +14,7 @@
   {"HTTP Host":true, "HTTPS Proxy Host":false, "HTTPS SNI":false, "Matched":true},
   {"HTTP Host":false, "HTTPS Proxy Host":true, "HTTPS SNI":false, "Matched":true},
   {"HTTP Host":false, "HTTPS Proxy Host":false, "HTTPS SNI":true, "Matched":true},
-  {"HTTP Host":false, "HTTPS Proxy Host":false, "HTTPS SNI":false, "Matched":true},
-}
+  {"HTTP Host":false, "HTTPS Proxy Host":false, "HTTPS SNI":false, "Matched":true}
+]
 ```
 #URI
