@@ -92,7 +92,7 @@
           testTableContent += "<td>" + HtmlSelect.genHtml(conditionAttrs[id], item) + "</td>";
           id++;
         });
-        testTableContent += "<td><span id='result'></span></td>";
+        testTableContent += "<td><span id=" + resultAttr + "></span></td>";
         testTableContent += "<td><button autofocus onclick='test()'>Test</button></td></tr>";
         console.log(JSON.stringify(testSelection));
         
