@@ -165,11 +165,13 @@ ID3 = {
       attrData = SampleSet.count(sample, attr, constraint);
       var leaf = Object.keys(attrData["data"])[0];
       if (constraint != null) {
-	var leftId = from + "-" + constraint[constraint.length - 1]["value"] + "-" +leaf;
-	ID3.decisionTree.nodes.push({id: leftId, label: leaf, shape: "triangleDown"});
-	ID3.decisionTree.edges.push({from: from, to: leftId, label: constraint[constraint.length - 1]["value"]});
+        var leftId = from + "-" + constraint[constraint.length - 1]["value"] + "-" +leaf;
+        ID3.decisionTree.nodes.push({id: leftId, label: leaf, shape: "triangleDown"});
+        ID3.decisionTree.edges.push({from: from, to: leftId, label: constraint[constraint.length - 1]["value"]});
       	console.log("Decision branch: " + JSON.stringify(constraint) + "=>" + leaf);
       	ID3.decisionBrachs.push(constraint.concat({"attr":attr, "value":leaf}));
+      } else {
+        ID3.decisionTree.nodes.push({id: attr, label: leaf, shape: "triangleDown"});
       }
     }
   },
