@@ -11,10 +11,10 @@
 #host name
 ```javascript
 [
-  {"HTTP Host":true, "Matched":true},
-  {"HTTPS SNI":true, "Matched":true},
-  {"HTTPS Proxy Host":true, "Matched":true},
-  {"HTTP Host":false, "HTTPS SNI":false, "HTTPS Proxy Host":false, "Matched":true},
+  {"HTTP Host":true, "HTTPS Proxy Host":false, "HTTPS SNI":false, "Matched":true},
+  {"HTTP Host":false, "HTTPS Proxy Host":true, "HTTPS SNI":false, "Matched":true},
+  {"HTTP Host":false, "HTTPS Proxy Host":false, "HTTPS SNI":true, "Matched":true},
+  {"HTTP Host":false, "HTTPS Proxy Host":false, "HTTPS SNI":false, "Matched":true},
 }
 ```
 #URI
