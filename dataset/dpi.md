@@ -22,7 +22,7 @@
 [
   {"ID":1, "Rule":"^/", "Traffic Type":"HTTP", "URL Matched":true, "Matched":true},
   {"ID":2, "Rule":"^!/", "Traffic Type":"HTTP", "URL Matched":true, "Matched":true},
-  {"ID":3, "Rule":"http:", "Traffic Type":"HTTP", "URL Matched":true, "Matched":true},
-  {"ID":3, "Rule":"https:", "Traffic Type":"HTTPS", "Matched":true}
+  {"ID":3, "Rule":"Known Website", "Matched":true},
+  {"ID":3, "Rule":"Known Protocol", "Matched":true}
 ]
 ```
